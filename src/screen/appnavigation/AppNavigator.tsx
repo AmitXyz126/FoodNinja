@@ -6,6 +6,14 @@ import Onboarding2 from "../Onboarding2";
 import Onboarding3 from "../Onboarding3";
 
 import LoginScreen from "../loginsignupprocess/LoginScreen";
+import BioScreen from "../loginsignupprocess/BioScreen";
+import MobileScreen from "../loginsignupprocess/MobileScreen";
+import PasswordScreen from "../loginsignupprocess/PasswordScreen";
+import LocationScreen from "../loginsignupprocess/LocationScreen";
+import ForgotPasswordOtp from "../loginsignupprocess/ForgotPasswordOtp";
+import CreateNewPassword from "../loginsignupprocess/CreateNewPassword";
+import AddAddressScreen from "../loginsignupprocess/AddAddressScreen";
+import ProfileDone from "../loginsignupprocess/ProfileDone";
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -14,6 +22,15 @@ export type RootStackParamList = {
   Onboarding3: undefined;
   Login: undefined;
   Signup: undefined;
+  Bio: undefined;
+  Mobile: undefined;
+  passwordScreen: undefined;
+  location: undefined;
+  forgotpassword: undefined;
+  createNewpassword: undefined;
+  AddAddressScreen:undefined;
+  profileDone:undefined;
+
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -26,6 +43,14 @@ export default function AppNavigator() {
       <Stack.Screen name="Onboarding2" component={Onboarding2} />
       <Stack.Screen name="Onboarding3" component={Onboarding3} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Bio" component={BioScreen} />
+      <Stack.Screen name="Mobile" component={MobileScreen} />
+      <Stack.Screen name="passwordScreen" component={PasswordScreen} />
+      <Stack.Screen name="location" component={LocationScreen} />
+      <Stack.Screen name="forgotpassword" component={ForgotPasswordOtp} />
+      <Stack.Screen name="createNewpassword" component={CreateNewPassword} />
+      <Stack.Screen name="AddAddressScreen" component={AddAddressScreen} />
+      <Stack.Screen name="profileDone" component={ProfileDone} />
     </Stack.Navigator>
   );
 }

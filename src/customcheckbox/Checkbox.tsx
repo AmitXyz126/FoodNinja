@@ -5,18 +5,23 @@ import { MaterialIcons } from "@expo/vector-icons";
 interface Props {
   checked: boolean;
   onChange: () => void;
+  label?: string; // 👈 NEW PROP
 }
 
-const CustomCheckBox: React.FC<Props> = ({ checked, onChange }) => {
+const CustomCheckBox: React.FC<Props> = ({ checked, onChange, label }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onChange} activeOpacity={0.7}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={onChange}
+      activeOpacity={0.7}
+    >
       <View style={[styles.box, checked && styles.boxChecked]}>
-        {checked && (
-          <MaterialIcons name="check" size={18} color="#D73A00" />
-        )}
+        {checked && <MaterialIcons name="check" size={18} color="#D73A00" />}
       </View>
 
-      <Text style={styles.label}>Remember me</Text>
+      <Text style={styles.label}>
+        {label || "Remember me"}  
+      </Text>
     </TouchableOpacity>
   );
 };
