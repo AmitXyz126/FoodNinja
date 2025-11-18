@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 interface CustomInputProps extends TextInputProps {
-  type?: "text" | "password";   // text = normal, password = eye wala
+  type?: "text" | "password" | "number";    
 }
 
 export default function CustomInput({ type = "text", ...rest }: CustomInputProps) {

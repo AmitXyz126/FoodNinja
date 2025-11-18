@@ -1,8 +1,10 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import GradientButton from "../gradientbutton/GradientButton";
+import React from "react";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import GradientButton from "../components/gradientbutton/GradientButton";
+
+const { height } = Dimensions.get("window");
 
 export default function Onboarding1() {
   const navigation = useNavigation<any>();
@@ -15,33 +17,39 @@ export default function Onboarding1() {
       end={{ x: 0.5, y: 1 }}
       style={styles.container}
     >
-      {/* Image */}
-      <Image
-        source={require("../../assets/images/enjoy.png")}
-        style={styles.image}
-        resizeMode="contain"
-      />
-      {/* Title */}
-      <Text style={styles.title}>Find your</Text>
-      <Text style={styles.titles}>Comfort Food here</Text>
+      {/* Top Section */}
+      <View style={styles.topSection}>
+        <Image
+          source={require("../../assets/images/enjoy.png")}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </View>
 
-      {/* Subtitle */}
-      <Text style={styles.subtitle}>
-        Here You Can find a chef or dish for every taste and color. Enjoy!
-      </Text>
+      {/* Middle Text Section */}
+      <View style={styles.middleSection}>
+        <Text style={styles.title}>Find your</Text>
+        <Text style={styles.titles}>Comfort Food here</Text>
 
-      {/* Button */}
-      <GradientButton
-        onPress={() => navigation.navigate("Onboarding2")}
-        title="Next"
-        style={{ marginVertical: 12, width: "100%", alignSelf: "center" }}
-      />
+        <Text style={styles.subtitle}>
+          Here You Can find a chef or dish for every taste and color. Enjoy!
+        </Text>
+      </View>
 
-      {/* Dots */}
-      <View style={styles.dotsContainer}>
-        <View style={[styles.dot, styles.activeDot]} />
-        <View style={styles.dot} />
-        <View style={styles.dot} />
+      {/* Bottom Section */}
+      <View style={styles.bottomSection}>
+        <GradientButton
+          onPress={() => navigation.navigate("Onboarding2")}
+          title="Next"
+          style={{ width: "100%" }}
+        />
+
+        {/* Dots */}
+        <View style={styles.dotsContainer}>
+          <View style={[styles.dot, styles.activeDot]} />
+          <View style={styles.dot} />
+          <View style={styles.dot} />
+        </View>
       </View>
     </LinearGradient>
   );
@@ -50,23 +58,40 @@ export default function Onboarding1() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 24,
+    paddingTop: 40,
+  },
+
+  /** Responsive Sections **/
+  topSection: {
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  middleSection: {
+    flex: 2,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 24,
-    paddingTop: 70,
+    paddingHorizontal: 12,
   },
+  bottomSection: {
+    flex: 1.3,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  /** Responsive Image **/
   image: {
-    width: 320,
-    height: 320,
-    marginBottom: 71,
+    width: "80%", // Responsive width
+    height: height * 0.3, // Responsive height based on screen
   },
+
+  /** Text Styles **/
   title: {
-    fontSize: 46,
+    fontSize: 40,
     fontWeight: "bold",
     color: "#F91F1C",
-    textAlign: "center",
-    marginTop: 38,
     fontFamily: "Poppins",
   },
   titles: {
@@ -74,23 +99,21 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "700",
     fontFamily: "Poppins",
-    fontStyle: "normal",
   },
   subtitle: {
     color: "#333",
     textAlign: "center",
     marginTop: 6,
-    marginBottom: 10,
     fontSize: 13,
     lineHeight: 20,
-    fontStyle: "normal",
     fontFamily: "Poppins",
+    paddingHorizontal: 20,
   },
 
+  /** Dots **/
   dotsContainer: {
     flexDirection: "row",
-    position: "absolute",
-    bottom: 50,
+    marginTop: 15,
   },
   dot: {
     height: 8,
@@ -100,7 +123,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   activeDot: {
-    backgroundColor: "#FF4B3A",
     width: 34,
+    backgroundColor: "#FF4B3A",
   },
 });

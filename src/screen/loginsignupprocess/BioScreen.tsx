@@ -34,7 +34,7 @@ export default function BioScreen({ navigation }: Props) {
         />
       </TouchableOpacity>
 
-      {/* 🔴 PROGRESS BAR */}
+      {/* PROGRESS BAR */}
       <View style={styles.progressContainer}>
         {[1, 2, 3, 4].map((item) => (
           <View
@@ -122,9 +122,11 @@ const styles = StyleSheet.create({
   },
 
   step: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: "600",
-    color: "red",
+    color: "#F91F1C",
+    fontFamily:"Poppins",
+    fontStyle:"normal"
   },
   nextBtn: {
     width: 60,
@@ -133,7 +135,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-
     elevation: 3,
   },
 

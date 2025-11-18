@@ -1,18 +1,18 @@
 // screens/PasswordScreen.tsx
+import CustomCheckBox from "@/components/customcheckbox/Checkbox";
+import { MaterialIcons } from "@expo/vector-icons";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import {
-  View,
+  Image,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  Image,
+  View,
 } from "react-native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../appnavigation/AppNavigator";
-import CustomCheckBox from "@/customcheckbox/Checkbox";
-import { LinearGradient } from "expo-linear-gradient";
-import { MaterialIcons } from "@expo/vector-icons";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "passwordScreen">;

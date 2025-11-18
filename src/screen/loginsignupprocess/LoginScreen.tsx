@@ -1,11 +1,11 @@
 // screens/Login.tsx
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import CustomInput from "@/components/customInput/CustomInput";
+import GradientButton from "@/components/gradientbutton/GradientButton";
 import { LinearGradient } from "expo-linear-gradient";
-import GradientButton from "@/gradientbutton/GradientButton";
-import CustomInput from "@/customInput/CustomInput";
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import CustomCheckBox from "@/customcheckbox/Checkbox";
+import CustomCheckBox from "@/components/customcheckbox/Checkbox";
 import { KeyboardAwareScrollView } from "@pietile-native-kit/keyboard-aware-scrollview";
 
 export default function Login({ navigation }) {
@@ -15,7 +15,7 @@ export default function Login({ navigation }) {
     <LinearGradient
       colors={["#FFF4F4", "#FFFFFF"]}
       start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
+      end={{ x: 1, y: 1 }}
       style={styles.container}
     >
       <KeyboardAwareScrollView
@@ -80,7 +80,7 @@ export default function Login({ navigation }) {
             ></Image>
           </TouchableOpacity>
 
-          <View style={{ flexDirection: "row", justifyContent: "center" }}>
+          <View style={{ flexDirection: "row", justifyContent: "center", marginTop:6, }}>
             <Text>Need an account?</Text>
             <TouchableOpacity onPress={() => navigation.navigate("Bio")}>
               <Text style={styles.signupText}> Create one</Text>
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginVertical: 15,
+    marginTop:20,
   },
   or: { marginHorizontal: 10 },
   line: {
@@ -167,6 +168,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom:12,
     // borderWidth: 1,
     gap: 6,
     padding: 12,

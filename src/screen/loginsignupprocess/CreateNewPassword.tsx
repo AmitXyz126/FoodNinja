@@ -1,11 +1,10 @@
-import CustomInput from "@/customInput/CustomInput";
+import CustomInput from "@/components/customInput/CustomInput";
 import React from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from "react-native";
 
 export default function CreateNewPassword({ navigation }) {

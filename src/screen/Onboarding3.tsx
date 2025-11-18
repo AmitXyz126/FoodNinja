@@ -1,12 +1,14 @@
-import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import GradientButton from "../gradientbutton/GradientButton";
+import OutlineButton from "@/components/gradientbutton/OutlineButton";
 import { useNavigation } from "@react-navigation/native";
-import OutlineButton from "@/gradientbutton/OutlineButton";
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import GradientButton from "../components/gradientbutton/GradientButton";
+
+const { width, height } = Dimensions.get("window");
 
 export default function Onboarding3() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   return (
     <LinearGradient
@@ -35,9 +37,10 @@ export default function Onboarding3() {
         onPress={() => navigation.navigate("Login")}
         style={styles.button}
       />
+
       <OutlineButton
         title="Create an Account"
-        onPress={() => console.log("Create Account pressed")}
+        onPress={() => navigation.navigate("Bio")}
         style={styles.button}
       />
 
@@ -57,56 +60,64 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 24,
+    paddingHorizontal: width * 0.06,
   },
+
   image: {
-    width: 320,
-    height: 320,
-    marginBottom: 32,
+    width: width * 0.75,
+    height: width * 0.75,
+    marginBottom: height * 0.03,
+    marginTop: height * 0.08,
   },
+
   title: {
-    fontSize: 46,
-    fontWeight: 700,
+    fontSize: width * 0.1,
+    fontWeight: "700",
     color: "#FF4B3A",
     textAlign: "center",
-    fontStyle: "normal",
     fontFamily: "Poppins",
-    marginTop:20
   },
+
   titles: {
+    fontSize: width * 0.06,
+    fontWeight: "700",
     color: "#000",
-    fontSize: 24,
-    fontWeight: 700,
-    fontStyle: "normal",
+    textAlign: "center",
+    marginTop: height * 0.005,
   },
+
   subtitle: {
     color: "#333",
     textAlign: "center",
-    marginTop: 12,
-    fontSize: 13,
-    lineHeight: 20,
-    fontStyle:"normal",
-    marginBottom:12,
+    marginTop: height * 0.015,
+    marginBottom: height * 0.03,
+    fontSize: width * 0.035,
+    lineHeight: width * 0.045,
+    fontFamily: "Poppins",
+    paddingHorizontal: width * 0.03,
   },
+
   button: {
-    marginVertical: 10,
+    marginVertical: height * 0.015,
     width: "100%",
-    alignSelf: "center",
   },
+
   dotsContainer: {
     flexDirection: "row",
     position: "absolute",
-    bottom: 70,
+    bottom: height * 0.07,
   },
+
   dot: {
-    height: 8,
-    width: 8,
-    borderRadius: 4,
+    height: width * 0.02,
+    width: width * 0.02,
+    borderRadius: width * 0.02,
     backgroundColor: "#FCA5A5",
-    marginHorizontal: 4,
+    marginHorizontal: width * 0.01,
   },
+
   activeDot: {
     backgroundColor: "#FF4B3A",
-    width: 34,
+    width: width * 0.09,
   },
 });

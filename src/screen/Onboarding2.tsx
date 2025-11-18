@@ -1,8 +1,10 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import GradientButton from "../gradientbutton/GradientButton";
+import React from "react";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import GradientButton from "../components/gradientbutton/GradientButton";
+
+const { height } = Dimensions.get("window");
 
 export default function Onboarding2() {
   const navigation = useNavigation<any>();
@@ -15,36 +17,42 @@ export default function Onboarding2() {
       end={{ x: 0.5, y: 1 }}
       style={styles.container}
     >
-      {/* Image */}
-      <Image
-        source={require("../../assets/images/paneer.png")}
-        style={styles.image}
-        resizeMode="contain"
-      />
+      {/* Top Section */}
+      <View style={styles.topSection}>
+        <Image
+          source={require("../../assets/images/paneer.png")}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </View>
 
-      {/* Title */}
-      <Text style={styles.title}>Food Ninja</Text>
-      <Text style={styles.titless}>
-        is Where Your Comfort {"\n"} Food Lives
-      </Text>
+      {/* Middle Section */}
+      <View style={styles.middleSection}>
+        <Text style={styles.title}>Food Ninja</Text>
 
-      {/* Subtitle */}
-      <Text style={styles.subtitle}>
-        Here you can find a chef or dish for every taste and color. Enjoy!
-      </Text>
+        <Text style={styles.titless}>
+          is Where Your Comfort {"\n"} Food Lives
+        </Text>
 
-      {/* Button */}
-      <GradientButton
-        onPress={() => navigation.navigate("Onboarding3")}
-        title="Get Started"
-        style={{ marginVertical: 10, width: "100%", alignSelf: "center" }}
-      />
+        <Text style={styles.subtitle}>
+          Here you can find a chef or dish for every taste and color. Enjoy!
+        </Text>
+      </View>
 
-      {/* Dots */}
-      <View style={styles.dotsContainer}>
-        <View style={styles.dot} />
-        <View style={[styles.dot, styles.activeDot]} />
-        <View style={styles.dot} />
+      {/* Bottom Section */}
+      <View style={styles.bottomSection}>
+        <GradientButton
+          onPress={() => navigation.navigate("Onboarding3")}
+          title="Get Started"
+          style={{ width: "100%" }}
+        />
+
+        {/* Dots */}
+        <View style={styles.dotsContainer}>
+          <View style={styles.dot} />
+          <View style={[styles.dot, styles.activeDot]} />
+          <View style={styles.dot} />
+        </View>
       </View>
     </LinearGradient>
   );
@@ -53,30 +61,49 @@ export default function Onboarding2() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 24,
+    paddingTop: 40,
+  },
+
+  /* Responsive Sections */
+  topSection: {
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  middleSection: {
+    flex: 2,
+    alignItems: "center",
+    paddingHorizontal: 16,
+  },
+  bottomSection: {
+    flex: 1.2,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 24,
-    paddingTop: 70,
+    width: "100%",
   },
+
+  /* Responsive Image */
   image: {
-    width: 324,
-    height: 320,
-    marginBottom: 71,
+    width: "80%",
+    height: height * 0.3, // Responsive
   },
+
+  /* Text */
   title: {
-    fontSize: 46,
+    fontSize: 44,
     fontWeight: "bold",
     color: "#FF4B3A",
     textAlign: "center",
+    fontFamily: "Poppins",
   },
   titless: {
     color: "#000",
     fontSize: 22,
     fontWeight: "700",
-    fontFamily: "Poppins",
-    fontStyle: "normal",
     textAlign: "center",
+    lineHeight: 30,
+    fontFamily: "Poppins",
   },
   subtitle: {
     color: "#333",
@@ -84,13 +111,13 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontSize: 14,
     lineHeight: 20,
-    fontStyle:"normal"
+    paddingHorizontal: 12,
   },
 
+  /* Dots */
   dotsContainer: {
     flexDirection: "row",
-    position: "absolute",
-    bottom: 60,
+    marginTop: 18,
   },
   dot: {
     height: 8,
@@ -100,7 +127,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   activeDot: {
-    backgroundColor: "#FF4B3A",
     width: 34,
+    backgroundColor: "#FF4B3A",
   },
 });

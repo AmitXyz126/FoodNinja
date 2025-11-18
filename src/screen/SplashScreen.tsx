@@ -8,7 +8,7 @@ export default function SplashScreen() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace("Login");
+      navigation.replace("Onboarding1");
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
@@ -34,8 +34,6 @@ export default function SplashScreen() {
           style={styles.logo}
           resizeMode="contain"
         />
-        {/* <Text style={styles.title}>FoodNinja</Text>
-        <Text style={styles.subtitle}>Deliver Favorite Food</Text> */}
       </View>
 
       {/* Bottom Pizza Image */}

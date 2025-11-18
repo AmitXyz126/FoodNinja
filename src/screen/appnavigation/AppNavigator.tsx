@@ -14,6 +14,11 @@ import ForgotPasswordOtp from "../loginsignupprocess/ForgotPasswordOtp";
 import CreateNewPassword from "../loginsignupprocess/CreateNewPassword";
 import AddAddressScreen from "../loginsignupprocess/AddAddressScreen";
 import ProfileDone from "../loginsignupprocess/ProfileDone";
+import HomeScreen from "../mainScreens/HomeScreen";
+import CategoriesScreen from "../mainScreens/CategoriesScreen";
+ import  foodscreen from "../mainScreens/FoodListScreen"
+import FoodListScreen from "../mainScreens/FoodListScreen";
+ 
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -28,9 +33,11 @@ export type RootStackParamList = {
   location: undefined;
   forgotpassword: undefined;
   createNewpassword: undefined;
-  AddAddressScreen:undefined;
-  profileDone:undefined;
-
+  AddAddressScreen: undefined;
+  profileDone: undefined;
+  homeScreen: undefined;
+  categoryscreen: undefined;
+  foodscreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -51,6 +58,9 @@ export default function AppNavigator() {
       <Stack.Screen name="createNewpassword" component={CreateNewPassword} />
       <Stack.Screen name="AddAddressScreen" component={AddAddressScreen} />
       <Stack.Screen name="profileDone" component={ProfileDone} />
+      <Stack.Screen name="homeScreen" component={HomeScreen} />
+      <Stack.Screen name="categoryscreen" component={CategoriesScreen} />
+      <Stack.Screen name="foodscreen" component={FoodListScreen} />
     </Stack.Navigator>
   );
 }

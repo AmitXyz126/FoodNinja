@@ -1,11 +1,14 @@
+import CustomInput from "@/components/customInput/CustomInput";
+import GradientButton from "@/components/gradientbutton/GradientButton";
 import React from "react";
 import {
-  View,
-  Text,
+  Image,
+  ScrollView,
   StyleSheet,
-  TextInput,
   Switch,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function AddAddressScreen({ navigation }) {
@@ -13,89 +16,133 @@ export default function AddAddressScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Add address</Text>
-
-      <View style={styles.row}>
-        <Text style={styles.label}>Set as default</Text>
-        <Switch
-          value={isDefault}
-          onValueChange={(val) => setIsDefault(val)}
-          thumbColor={"white"}
-          trackColor={{ true: "#E53935", false: "#ccc" }}
-        />
-      </View>
-
-      <TextInput placeholder="Address label" style={styles.input} />
-      <TextInput
-        placeholder="Delivery instructions (optional)"
-        style={styles.input}
-      />
-      <TextInput placeholder="Full name" style={styles.input} />
-
-      <View style={styles.row}>
-        <TextInput
-          placeholder="+91"
-          style={[styles.input, { flex: 0.3, marginRight: 10 }]}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Phone number"
-          style={[styles.input, { flex: 0.7 }]}
-          keyboardType="phone-pad"
-        />
-      </View>
-
-      <View style={styles.row}>
-        <TextInput
-          placeholder="City"
-          style={[styles.input, { flex: 1, marginRight: 10 }]}
-        />
-        <TextInput placeholder="State" style={[styles.input, { flex: 1 }]} />
-      </View>
-
-      <View style={styles.row}>
-        <TextInput
-          placeholder="Postal code"
-          style={[styles.input, { flex: 1, marginRight: 10 }]}
-          keyboardType="numeric"
-        />
-        <TextInput placeholder="Country" style={[styles.input, { flex: 1 }]} />
-      </View>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("profileDone")}
+      <ScrollView
+        contentContainerStyle={styles.formContainer}
+        showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.buttonText}>Continue</Text>
-      </TouchableOpacity>
+        {/* Back Button */}
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.backBtn}
+        >
+          <Image
+            source={require("../../../assets/images/backarrow.png")}
+            style={styles.backIcon}
+          />
+        </TouchableOpacity>
+
+        {/* Switch Row */}
+        <View style={styles.rows}>
+          <Text style={styles.label}>Set as default</Text>
+          <Switch
+            value={isDefault}
+            onValueChange={setIsDefault}
+            thumbColor={"white"}
+            trackColor={{ true: "#E53935", false: "#ccc" }}
+          />
+        </View>
+
+        {/* Inputs */}
+        <CustomInput placeholder="Address label (e.g. home, work, other)" />
+
+        <CustomInput placeholder="Delivery instructions (optional)" />
+
+        <CustomInput placeholder="Full Name" />
+
+        {/* Phone Row */}
+        <View style={styles.rowes}>
+          <CustomInput
+            placeholder="+91"
+            type="number"
+            style={{ flex: 0.35, marginRight: 10, width:40}}
+          />
+          <CustomInput
+            placeholder="Phone number"
+            type="number"
+            style={{ flex: 1 }}
+          />
+        </View>
+
+        {/* Street */}
+        <CustomInput placeholder="Street address" />
+
+        {/* City + State Row */}
+        <View style={styles.row}>
+          <CustomInput
+            placeholder="City"
+            style={{ flex: 1, marginRight: 10 }}
+          />
+          <CustomInput placeholder="State / province" style={{ flex: 1 }} />
+        </View>
+
+        {/* ZIP + Country Row */}
+        <View style={styles.row}>
+          <CustomInput
+            placeholder="ZIP / postal code"
+            type="number"
+            style={{ flex: 1, marginRight: 10 }}
+          />
+          <CustomInput placeholder="Country" style={{ flex: 1 }} />
+        </View>
+
+        <View style={{ height: 130 }} />
+      </ScrollView>
+
+      {/* Bottom Button */}
+      <View style={styles.bottomButtonContainer}>
+        <GradientButton
+          title="Continue"
+          onPress={() => navigation.navigate("profileDone")}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff", padding: 20 },
-  title: { fontSize: 26, fontWeight: "700", marginBottom: 20 },
+  container: { flex: 1, backgroundColor: "#fff" },
+
+  formContainer: {
+    padding: 20,
+    paddingBottom: 160,
+    marginTop: 40,
+  },
+
+  backBtn: { marginBottom: 15 },
+  backIcon: { width: 28, height: 28, resizeMode: "contain" },
 
   label: { fontSize: 16, fontWeight: "600" },
-  input: {
-    height: 50,
-    backgroundColor: "#f3f3f3",
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 12,
-  },
-  row: { flexDirection: "row", alignItems: "center", marginBottom: 12 },
 
-  button: {
-    backgroundColor: "#E53935",
+  rows: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 12,
+    backgroundColor: "#F8F8F8",
     paddingVertical: 15,
-    borderRadius: 10,
-    marginTop: 20,
+    paddingHorizontal: 16,
+    borderRadius: 8,
   },
-  buttonText: {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "600",
+  rowes: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+    width: "50%",
+    gap: 3,
+  },
+
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+    width: "50%",
+    gap: 3,
+  },
+
+  bottomButtonContainer: {
+    position: "absolute",
+    bottom: 20,
+    left: 20,
+    right: 20,
   },
 });

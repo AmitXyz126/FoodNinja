@@ -1,7 +1,7 @@
 // screens/LocationScreen.tsx
-import GradientButton from "@/gradientbutton/GradientButton";
+import GradientButton from "@/components/gradientbutton/GradientButton";
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import MapView from "react-native-maps";
 
 export default function LocationScreen({ navigation }) {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: "#fff" },
   backIcon: { width: 28, height: 28, resizeMode: "contain" },
   backBtn: {
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: 10,
   },
 
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   title: { fontSize: 26, fontWeight: "700", marginTop: 40 },
   sub: { fontSize: 14, color: "#555", marginVertical: 10 },
-  map: { height: 350, width: "100%", borderRadius: 10, marginTop: 20 },
+  map: { height: 350, width: "100%", borderRadius: 20, marginTop: 20,  },
   button: {
     backgroundColor: "#E53935",
     height: 55,
