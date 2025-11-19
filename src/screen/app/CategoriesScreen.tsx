@@ -6,7 +6,7 @@ import SearchBar from "@/components/searchbar/SearchBar";
 import FoodCard from "@/components/foodcard/FoodCard";
  
 
-const CategoriesScreen: React.FC = () => {
+const CategoriesScreen = () => {
   return (
     <ScrollView style={styles.container}>
 

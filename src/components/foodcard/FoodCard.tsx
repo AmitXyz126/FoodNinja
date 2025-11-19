@@ -5,7 +5,7 @@ const FoodCard: React.FC = () => {
   return (
     <View style={styles.card}>
       <Image
-        source={{ uri: "https://i.imgur.com/5Aqgz7o.png" }}
+        source={require("../../../assets/images/pizzaa.png")}
         style={styles.img}
       />
       <Text style={styles.title}>Tasty Mexican Pizza</Text>
@@ -19,7 +19,7 @@ export default FoodCard;
 const styles = StyleSheet.create({
   card: {
     width: 150,
-    backgroundColor: "#fff",
+    backgroundColor: "#F8F8F8",
     borderRadius: 14,
     padding: 10,
     marginRight: 15,

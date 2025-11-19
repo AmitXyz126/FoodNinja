@@ -1,9 +1,8 @@
-// screens/PasswordScreen.tsx
-import CustomCheckBox from "@/components/customcheckbox/Checkbox";
+// screens/MobileScreen.tsx
 import { MaterialIcons } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useState } from "react";
+import React from "react";
 import {
   Image,
   StyleSheet,
@@ -12,18 +11,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { RootStackParamList } from "../appnavigation/AppNavigator";
+import { RootStackParamList } from "../../navigation/AuthNavigator";
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList, "passwordScreen">;
+  navigation: StackNavigationProp<RootStackParamList, "Mobile">;
 };
 
-export default function PasswordScreen({ navigation }: Props) {
-  const [remember, setRemember] = useState(false);
-  const step = 3;
+export default function MobileScreen({ navigation }: Props) {
+  const step = 2;
 
   return (
     <View style={styles.container}>
+      {/* BACK ARROW */}
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         style={styles.backBtn}
@@ -33,6 +32,7 @@ export default function PasswordScreen({ navigation }: Props) {
           style={styles.backIcon}
         />
       </TouchableOpacity>
+
       {/* PROGRESS BAR */}
       <View style={styles.progressContainer}>
         {[1, 2, 3, 4].map((item) => (
@@ -46,38 +46,23 @@ export default function PasswordScreen({ navigation }: Props) {
         ))}
       </View>
 
-      {/* TITLE */}
-      <Text style={styles.title}>Create a Secure Password</Text>
+      {/* TITLE & SUBTEXT */}
+      <Text style={styles.title}>Add Your Mobile Number</Text>
       <Text style={styles.sub}>
-        Choose a strong password to keep your account safe.
+        We’ll use this number to verify your account and keep it secure
       </Text>
 
-      {/* INPUTS */}
-      <View style={{ marginTop: 20 }}>
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          secureTextEntry
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm Password"
-          secureTextEntry
-        />
-        <View style={styles.row}>
-          <CustomCheckBox
-            label="I agree to terms & conditions"
-            checked={remember}
-            onChange={() => setRemember(!remember)}
-          />
-        </View>
-      </View>
+      {/* INPUT */}
+      <TextInput
+        style={styles.input}
+        placeholder="Mobile number"
+        keyboardType="phone-pad"
+      />
 
-      {/* STEP + NEXT BUTTON */}
+      {/* 2/4 + NEXT BUTTON */}
       <View style={styles.bottomRow}>
-        <Text style={styles.step}>3/4</Text>
-
-        <TouchableOpacity onPress={() => navigation.navigate("location")}>
+        <Text style={styles.step}>2/4</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("PasswordScreen")}>
           <LinearGradient
             colors={["#FF2D1D", "#8B1A05"]}
             start={{ x: 0, y: 0 }}
@@ -93,14 +78,11 @@ export default function PasswordScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    backgroundColor: "#fff",
-  },
+  container: { flex: 1, paddingHorizontal: 20, backgroundColor: "#fff" },
 
   backBtn: {
     marginTop: 40,
+    marginBottom: 10,
   },
   backIcon: { width: 28, height: 28, resizeMode: "contain" },
 
@@ -116,19 +98,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
-  title: { fontSize: 26, fontWeight: "700" },
-  sub: { fontSize: 14, color: "#555", marginTop: 10 },
+  title: { fontSize: 26, fontWeight: "700", marginBottom: 8 },
+  sub: { fontSize: 14, color: "#555", width: "90%", marginBottom: 20 },
 
   input: {
     width: "100%",
-    height: 50,
+    height: 52,
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginTop: 15,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    fontSize: 16,
   },
-
   bottomRow: {
     position: "absolute",
     bottom: 30,
@@ -138,18 +119,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 15,
-  },
-  forgot: { color: "#FF4C4C", fontWeight: "bold" },
 
-  step: { fontSize: 16, color: "red", fontWeight: "600" },
+  step: { fontSize: 18, fontWeight: "600", color: "red" },
 
   nextBtn: {
-    width: 55,
-    height: 55,
+    width: 60,
+    height: 60,
     backgroundColor: "#E53935",
     borderRadius: 10,
     justifyContent: "center",

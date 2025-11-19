@@ -1,17 +1,17 @@
 import React from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
   Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
  
-import { Ionicons } from "@expo/vector-icons";
 import SearchBar from "@/components/searchbar/SearchBar";
+import { Ionicons } from "@expo/vector-icons";
 
-const FoodListScreen: React.FC = () => {
+const FoodListScreen = () => {
   return (
     <ScrollView style={styles.container}>
       

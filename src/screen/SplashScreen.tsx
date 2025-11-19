@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,7 +11,7 @@ export default function SplashScreen() {
       navigation.replace("Onboarding1");
     }, 1000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [navigation]);
 
   return (
     <LinearGradient

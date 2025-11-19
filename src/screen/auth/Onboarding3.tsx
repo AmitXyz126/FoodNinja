@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
-import GradientButton from "../components/gradientbutton/GradientButton";
+import GradientButton from "../../components/gradientbutton/GradientButton";
 
 const { width, height } = Dimensions.get("window");
 
@@ -19,7 +19,7 @@ export default function Onboarding3() {
       style={styles.container}
     >
       <Image
-        source={require("../../assets/images/panner2.png")}
+        source={require("../../../assets/images/panner2.png")}
         style={styles.image}
         resizeMode="contain"
       />

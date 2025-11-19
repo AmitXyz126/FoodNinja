@@ -1,17 +1,17 @@
 // screens/BioScreen.tsx
+import { MaterialIcons } from "@expo/vector-icons";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
-  View,
+  Image,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  Image,
+  View,
 } from "react-native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../appnavigation/AppNavigator";
-import { LinearGradient } from "expo-linear-gradient";
-import { MaterialIcons } from "@expo/vector-icons";
+import { RootStackParamList } from "../../navigation/AuthNavigator";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Bio">;

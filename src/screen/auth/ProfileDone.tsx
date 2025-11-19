@@ -1,9 +1,11 @@
 import GradientButton from "@/components/gradientbutton/GradientButton";
+import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-export default function ProfileDone({ navigation }) {
+export default function ProfileDone() {
+  const navigation = useNavigation<any>();
   return (
     <LinearGradient
       colors={["#FED2D2", "#fff"]}
@@ -25,7 +27,11 @@ export default function ProfileDone({ navigation }) {
       <GradientButton
         title="Go to Home"
         style={styles.button}
-        onPress={() => navigation.navigate("homeScreen")}
+        onPress={() =>
+          navigation.navigate("MainTabs", {
+            screen: "HomeTab",
+          })
+        }
       />
     </LinearGradient>
   );
