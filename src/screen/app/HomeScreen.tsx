@@ -1,18 +1,20 @@
 import FoodCard from "@/components/foodcard/FoodCard";
 import SearchBar from "@/components/searchbar/SearchBar";
 import SpecialDealCard from "@/components/specialdeal/SpecialDealCard";
+import { Colors } from "constants/theme";
 import React from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
+  Dimensions,
+  FlatList,
   Image,
   Pressable,
-  Dimensions,
-  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 import { Switch } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get("window");
 
@@ -36,9 +38,8 @@ const HomeScreen = () => {
   ];
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        
         {/* Header */}
         <View style={styles.header}>
           <View>
@@ -72,16 +73,21 @@ const HomeScreen = () => {
         <View style={styles.switchRow}>
           <Text style={styles.title}>
             <Text style={{ color: "#E53935" }}>Find Your</Text>
-            {"\n"}
             Favorite Food
           </Text>
 
-          <Switch
-            value={isDefault}
-            onValueChange={setIsDefault}
-            thumbColor={"white"}
-            trackColor={{ true: "#E53935", false: "#ccc" }}
-          />
+          {/* Right Side Veg  + Switch */}
+          <View style={{ alignItems: "center" }}>
+            <Text style={styles.vegText}>Veg</Text>
+
+            <Switch
+              value={isDefault}
+              onValueChange={setIsDefault}
+              thumbColor={"white"}
+              trackColor={{ true: "#E53935", false: "#ccc" }}
+              style={{ marginTop: -5 }}
+            />
+          </View>
         </View>
 
         {/* Categories */}
@@ -120,12 +126,13 @@ const HomeScreen = () => {
         </View>
 
         {/* Food Cards */}
-        <View style={styles.foodcard}>
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-        </View>
+        <FlatList
+          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          renderItem={() => <FoodCard />}
+          keyExtractor={(item) => item.toString()}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.foodCardList}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -135,7 +142,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
     paddingTop: 20,
   },
 
@@ -145,6 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
+    paddingHorizontal: 20,
   },
 
   hello: { fontSize: 22, fontWeight: "700" },
@@ -176,12 +184,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
     marginBottom: 20,
+    paddingHorizontal: 20,
+  },
+  vegText: {
+    fontSize: 14,
+    fontWeight: "600",
+    marginBottom: 4,
+    color: "#555",
+  },
+  listContainer: {
+    paddingTop: 8,
+    paddingBottom: 90,
   },
 
   title: {
     fontSize: 26,
     fontWeight: "700",
-    width: width * 0.7,    
+    width: width * 0.7,
     lineHeight: 32,
   },
 
@@ -190,6 +209,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 16,
     marginBottom: 20,
+    paddingLeft: 20,
   },
   categoryItem: {
     backgroundColor: "#F7F7F7",
@@ -228,16 +248,20 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingVertical:20,
   },
 
   sectionTitle: { fontSize: 20, fontWeight: "700" },
 
   viewMore: { color: "#E53935", fontWeight: "600" },
 
-  foodcard: {
+  foodCardList: {
     flexDirection: "row",
     flexWrap: "wrap",
+    rowGap: 20,
     justifyContent: "space-between",
     paddingBottom: 50,
+    paddingHorizontal: 20,
   },
 });

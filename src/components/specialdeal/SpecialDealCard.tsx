@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const SpecialDealCard = () => {
   return (
@@ -23,7 +23,7 @@ const SpecialDealCard = () => {
       {/* RIGHT IMAGE + BADGE */}
       <View style={styles.imageWrap}>
         <Image
-          source={require("../../../assets/images/pizzadeal.png")}
+          source={require("../../../assets/images/pizza2.png")}
           style={styles.pizza}
         />
 
@@ -44,13 +44,14 @@ export default SpecialDealCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: 180,
+    flex: 1,
     borderRadius: 26,
     padding: 18,
     marginTop: 20,
     flexDirection: "row",
     overflow: "hidden",
+    marginHorizontal: 20,
+    justifyContent: "space-between",
   },
 
   title: {
@@ -81,25 +82,24 @@ const styles = StyleSheet.create({
   },
 
   imageWrap: {
-    width: "45%",
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
   },
 
   pizza: {
-    width: 152,
-    height: 157,
+    width: 200,
+    height: 170,
     position: "absolute",
-    bottom: -20,
-    right: -20,
+    bottom: -80,
+    right: -100,
     // borderRadius: 90,
   },
 
   badge: {
     position: "absolute",
-    right: 10,
-    top: 10,
+    right: 75,
+    bottom: 5,
     width: 55,
     height: 55,
     justifyContent: "center",

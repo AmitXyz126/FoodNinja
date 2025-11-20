@@ -1,78 +1,213 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
- 
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  Image,
+  Dimensions,
+} from "react-native";
+
 import { Ionicons } from "@expo/vector-icons";
 import SearchBar from "@/components/searchbar/SearchBar";
 import FoodCard from "@/components/foodcard/FoodCard";
- 
+import { FlatList, Switch } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Colors } from "constants/theme";
+
+const { width } = Dimensions.get("window");
 
 const CategoriesScreen = () => {
+  const [activeCat, setActiveCat] = React.useState("Pizza");
+  const [isDefault, setIsDefault] = React.useState(false);
+
+  const categories = [
+    {
+      id: 1,
+      name: "Pizza",
+      icon: require("../../../assets/images/smallpizza.png"),
+    },
+
+    {
+      id: 2,
+      name: "Burger",
+      icon: require("../../../assets/images/burger.png"),
+    },
+    { id: 3, name: "Pasta", icon: require("../../../assets/images/pasta.png") },
+    { id: 4, name: "Tacos", icon: require("../../../assets/images/tacos.png") },
+  ];
+
   return (
-    <ScrollView style={styles.container}>
-
-      {/* Top Bar */}
-      <View style={styles.header}>
-        <Ionicons name="chevron-back" size={26} />
-        <Text style={styles.title}>Categories</Text>
-        <Ionicons name="notifications-outline" size={24} />
-      </View>
-
-      <SearchBar />
-
-      {/* Tabs */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <View style={styles.categoryRow}>
-          <Text style={styles.catItem}>Pizza</Text>
-          <Text style={styles.catItem}>Burger</Text>
-          <Text style={styles.catItem}>Tacos</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.light.background }}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        {/* Top Bar */}
+        <View style={styles.header}>
+          <Ionicons name="chevron-back" size={26} />
+          <Text style={styles.title}>Categories</Text>
+          <Ionicons name="notifications-outline" size={24} />
         </View>
+
+        {/* Search + Veg Switch */}
+        <View style={styles.searchRow}>
+          <View style={{ flex: 1 }}>
+            <SearchBar />
+          </View>
+
+          <View style={styles.vegContainer}>
+            <Text style={styles.vegText}>Veg</Text>
+            <Switch
+              value={isDefault}
+              onValueChange={setIsDefault}
+              thumbColor={"white"}
+              trackColor={{ true: "#E53935", false: "#ccc" }}
+              style={{ marginTop: -5 }}
+            />
+          </View>
+        </View>
+
+        {/* Category Tabs */}
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={styles.categoryRow}>
+            {categories.map((item) => (
+              <Pressable
+                key={item.id}
+                onPress={() => setActiveCat(item.name)}
+                style={[
+                  styles.categoryItem,
+                  activeCat === item.name && { backgroundColor: "#FED2D2" },
+                ]}
+              >
+                <Image source={item.icon} style={styles.catIcon} />
+                <Text
+                  style={[
+                    styles.catText,
+                    activeCat === item.name && { color: "#E53935" },
+                  ]}
+                >
+                  {item.name}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+        </ScrollView>
+
+        {/* Top Food Row */}
+        <View style={styles.topFoodRow}>
+          <Text style={styles.sectionTitle}>Top Food</Text>
+          <Text style={styles.viewMore}>View More</Text>
+        </View>
+
+        {/* Food Cards */}
+        <FlatList
+          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          renderItem={() => <FoodCard />}
+          keyExtractor={(item) => item.toString()}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.foodCardList}
+        />
+
+        <View style={{ height: 30 }} />
       </ScrollView>
-
-      <Text style={styles.sectionTitle}>Top Food</Text>
-
-      {/* Grid */}
-      <View style={styles.grid}>
-        <FoodCard />
-        <FoodCard />
-        <FoodCard />
-        <FoodCard />
-      </View>
-
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
 export default CategoriesScreen;
 
 const styles = StyleSheet.create({
-  container: { padding: 20, backgroundColor: "#fff" },
+  container: { backgroundColor: "#fff", paddingTop: 0 },
 
+  /* Header */
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 20,
+    paddingHorizontal: 20,
   },
 
   title: { fontSize: 20, fontWeight: "700" },
 
-  categoryRow: { flexDirection: "row", gap: 12, marginVertical: 15 },
-
-  catItem: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    backgroundColor: "#F4F4F4",
-    borderRadius: 20,
+  /* Search + Veg */
+  searchRow: {
+    flexDirection: "row",
+    marginBottom: 25,
+    alignItems: "center",
+    gap: 15,
   },
 
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: "700",
-    marginBottom: 10,
+  vegContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 2,
+    paddingRight: 20,
   },
 
-  grid: {
+  vegText: {
+    fontSize: 14,
+    fontWeight: "600",
+    marginBottom: 4,
+    color: "#555",
+  },
+
+  /* Categories */
+  categoryRow: {
+    flexDirection: "row",
+    gap: 18,
+    marginBottom: 25,
+    paddingLeft: 20,
+  },
+
+  categoryItem: {
+    backgroundColor: "#F7F7F7",
+    width: width * 0.23,
+    height: 60,
+    borderRadius: 16,
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: 10,
+    marginTop: 35,
+
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 6,
+  },
+
+  catIcon: {
+    width: 50,
+    height: 50,
+    resizeMode: "contain",
+    position: "absolute",
+    top: -20,
+  },
+
+  catText: {
+    marginTop: 5,
+    fontWeight: "600",
+    fontSize: 14,
+    color: "#000",
+  },
+
+  /* Top Food Row */
+  topFoodRow: {
+    marginBottom: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+  },
+
+  sectionTitle: { fontSize: 20, fontWeight: "700" },
+  viewMore: { color: "#E53935", fontWeight: "600" },
+
+  foodCardList: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 15,
+    rowGap: 20,
+    justifyContent: "space-between",
+    paddingBottom: 50,
+    paddingHorizontal: 20,
   },
 });

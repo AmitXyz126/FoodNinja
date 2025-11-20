@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 12,
     marginVertical: 10,
+    marginHorizontal:20,
+    
+    boxShadow:'0 0 5px 1px #b3b3b380'
   },
   input: {
     marginLeft: 10,

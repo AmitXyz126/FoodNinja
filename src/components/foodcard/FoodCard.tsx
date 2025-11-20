@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const FoodCard: React.FC = () => {
   return (
@@ -18,11 +18,12 @@ export default FoodCard;
 
 const styles = StyleSheet.create({
   card: {
-    width: 150,
+    width: '95%',
     backgroundColor: "#F8F8F8",
     borderRadius: 14,
     padding: 10,
     marginRight: 15,
+    boxShadow:'0 0 5px 1px #b3b3b380'
   },
   img: {
     width: "100%",

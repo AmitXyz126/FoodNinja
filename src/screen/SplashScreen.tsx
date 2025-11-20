@@ -38,7 +38,7 @@ export default function SplashScreen() {
 
       {/* Bottom Pizza Image */}
       <Image
-        source={require("../../assets/images/pizza2.png")}  
+        source={require("../../assets/images/pizzadeal.png")}  
         style={styles.bottomImage}
         resizeMode="contain"
       />
