@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 const SettingScreen = () => {
   const [vegMode, setVegMode] = useState(false);
   const [appearance, setAppearance] = useState(false);
-  const navigation = useNavigation<any>()
+  const navigation = useNavigation<any>();
 
   const Row = ({
     icon,
@@ -54,6 +54,7 @@ const SettingScreen = () => {
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* Header / Back */}
         <View style={styles.headerRow}>
+          {/* Left Back Button */}
           <Pressable
             onPress={() => navigation?.goBack?.()}
             style={styles.backBtn}
@@ -63,7 +64,12 @@ const SettingScreen = () => {
               style={{ width: 26, height: 26 }}
             />
           </Pressable>
+
+          {/* Center Title */}
           <Text style={styles.headerTitle}>Setting</Text>
+
+          {/* Right Spacer (same size as back button) */}
+          <View style={{ width: 36 }} />
         </View>
 
         {/* Profile card */}
@@ -115,7 +121,7 @@ const SettingScreen = () => {
               />
             }
             label="Address details"
-            onPress={() => navigation?.navigate?.("Address")}
+            onPress={() => navigation?.navigate?.("myAddressesScreen")}
           />
 
           <Divider />
@@ -128,7 +134,7 @@ const SettingScreen = () => {
               />
             }
             label="My Order"
-            onPress={() => navigation?.navigate?.("Orders")}
+            onPress={() => navigation?.navigate?.("myOrder")}
           />
 
           <Divider />
@@ -167,7 +173,7 @@ const SettingScreen = () => {
               />
             }
             label="Language"
-            onPress={() => navigation?.navigate?.("Language")}
+            onPress={() => navigation?.navigate?.("LanguageScreen")}
             right={<Text style={styles.smallText}>English</Text>}
           />
 
@@ -181,7 +187,7 @@ const SettingScreen = () => {
               />
             }
             label="Delete Account"
-            onPress={() => console.log("delete account")}
+            onPress={() => navigation?.navigate?.("DeleteAccountScreen")}
           />
         </View>
 
@@ -197,7 +203,7 @@ const SettingScreen = () => {
               />
             }
             label="Customer Support"
-            onPress={() => navigation?.navigate?.("Support")}
+            onPress={() => navigation?.navigate?.("CustomerSupport")}
           />
 
           <Divider />
@@ -275,18 +281,31 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: "#fbfbfb" },
   scroll: { padding: 16 },
 
-  headerRow: { flexDirection: "row", alignItems: "center", marginBottom: 12 },
+  headerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between", // important
+    marginBottom: 12,
+  },
+
   backBtn: {
     width: 36,
     height: 36,
     borderRadius: 10,
-   
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 10,
     elevation: 2,
   },
-  headerTitle: { fontSize: 18, fontWeight: "600", color: "#333" },
+
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#333",
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+  },
 
   card: {
     flexDirection: "row",

@@ -6,6 +6,11 @@ import HomeScreen from "@/screen/app/HomeScreen";
 import SettingScreen from "@/screen/app/SettingScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import MyAddressesScreen from "@/screen/app/MyAddressesScreen";
+import OrdersHistoryScreen from "@/screen/app/OrdersHistoryScreen";
+import CustomerSupportScreen from "@/screen/app/CustomerSupportScreen";
+import LanguageScreen from "@/screen/app/LanguageScreen";
+import DeleteAccountScreen from "@/screen/app/DeleteAccountScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +47,11 @@ export function SettingStackNavigator() {
     <Stack.Navigator initialRouteName="Setting" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Setting" component={SettingScreen} />
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+      <Stack.Screen name="myAddressesScreen" component={MyAddressesScreen} />
+      <Stack.Screen name="myOrder" component={OrdersHistoryScreen} />
+      <Stack.Screen name="CustomerSupport" component={CustomerSupportScreen} />
+      <Stack.Screen name="LanguageScreen" component={LanguageScreen} />
+      <Stack.Screen name="DeleteAccountScreen" component={DeleteAccountScreen} />
     </Stack.Navigator>
   );
 }

@@ -48,7 +48,7 @@ const CategoriesScreen = () => {
           <Ionicons name="notifications-outline" size={24} />
         </View>
 
-        {/* Search + Veg Switch */}
+ 
         <View style={styles.searchRow}>
           <View style={{ flex: 1 }}>
             <SearchBar />
@@ -66,7 +66,7 @@ const CategoriesScreen = () => {
           </View>
         </View>
 
-        {/* Category Tabs */}
+   
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.categoryRow}>
             {categories.map((item) => (
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
 
   title: { fontSize: 20, fontWeight: "700" },
 
-  /* Search + Veg */
+ 
   searchRow: {
     flexDirection: "row",
     marginBottom: 25,
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     color: "#555",
   },
 
-  /* Categories */
+ 
   categoryRow: {
     flexDirection: "row",
     gap: 18,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     color: "#000",
   },
 
-  /* Top Food Row */
+ 
   topFoodRow: {
     marginBottom: 15,
     flexDirection: "row",
