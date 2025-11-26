@@ -26,7 +26,7 @@ const HomeScreen = () => {
     {
       id: 1,
       name: "Pizza",
-      icon: require("../../../assets/images/smallpizza.png"),
+      icon: require("../../../assets/images/small.png"),
     },
     {
       id: 2,

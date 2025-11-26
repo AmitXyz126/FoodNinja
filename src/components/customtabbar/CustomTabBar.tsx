@@ -11,7 +11,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 const CustomTabBar: React.FC<BottomTabBarProps> = ({
   state,
-  descriptors,
   navigation,
 }) => {
   return (
@@ -25,7 +24,7 @@ const CustomTabBar: React.FC<BottomTabBarProps> = ({
             : route.name === "CategoriesTab"
             ? "document-text"
             : route.name === "CartTab"
-            ? "trash"
+            ? "cart"
             : "settings";
 
         const onPress = (e: GestureResponderEvent) => {
