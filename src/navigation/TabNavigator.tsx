@@ -14,25 +14,20 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-    
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarShowLabel: false,
-        sceneStyle: { backgroundColor: "#344" },
+        tabBarHideOnKeyboard: true,
+        tabBarLabelStyle: { display: "none" },
+        tabBarItemStyle: { flexBasis: "auto", width: "auto" },
         tabBarStyle: {
-          flexDirection: "row",
-          backgroundColor: "#000",
-          marginBottom: 1,
-          marginHorizontal: 1,
-          borderTopLeftRadius: 12,
-          borderTopRightRadius: 12,
-          paddingVertical: 12,
-          justifyContent: "space-around",
-          elevation: 15,
-          shadowColor: "#000",
-          shadowOpacity: 0.15,
-          shadowRadius: 10,
-          shadowOffset: { width: 5, height: 5 },
+          position: "absolute",
+          backgroundColor: "#fff",
+          height: 70,
+          borderRadius: 30,
+          paddingBottom: 10,
+          paddingTop: 10,
+          borderTopWidth: 0,
+          boxShadow: "0 10px 10px 12px rgba(0,0,0,0.15)",
         },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: keyof typeof Ionicons.glyphMap = "home";
@@ -47,8 +42,9 @@ const TabNavigator = () => {
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-         tabBarActiveTintColor: "#FF1D1D",
-          tabBarInactiveTintColor: "#666",
+
+        tabBarActiveTintColor: "#FF1D1D",
+        tabBarInactiveTintColor: "#666",
       })}
     >
       <Tab.Screen name="HomeTab" component={HomeStackNavigator} />
@@ -61,9 +57,18 @@ const TabNavigator = () => {
           const hideOnScreens = ["EditProfile"];
           console.log("Current Route Name:", routeName);
           return {
-            tabBarStyle: {
-              display: hideOnScreens.includes(routeName) ? "none" : "flex",
-            },
+            tabBarStyle: hideOnScreens.includes(routeName)
+              ? { display: "none" }
+              : {
+                  position: "absolute",
+                  backgroundColor: "#fff",
+                  height: 70,
+                  borderRadius: 30,
+                  paddingBottom: 10,
+                  paddingTop: 10,
+                  borderTopWidth: 0,
+                  boxShadow: "0 10px 10px 12px rgba(0,0,0,0.15)",
+                },
           };
         }}
         component={SettingStackNavigator}
