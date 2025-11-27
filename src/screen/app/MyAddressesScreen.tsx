@@ -16,6 +16,7 @@ type AddressItem = {
   distance: string;
   tag?: string;
   icon: keyof typeof Ionicons.glyphMap;
+  
 };
 
 export default function MyAddressesScreen() {

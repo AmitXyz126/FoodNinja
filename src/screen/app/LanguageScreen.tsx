@@ -65,7 +65,7 @@ export default function LanguageScreen() {
                 <View
                   style={[
                     styles.radioOuter,
-                    selectedLang === item && { borderColor: "#E95555" }, // optional: make radio border black too
+                    selectedLang === item && { borderColor: "#E95555" },  
                   ]}
                 >
                   {selectedLang === item && <View style={styles.radioInner} />}
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
     marginTop: "auto",
-    marginBottom: 10,
+    marginBottom: 15,
   },
   saveText: {
     fontSize: 16,

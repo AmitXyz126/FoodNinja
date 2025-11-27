@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   progressContainer: {
     flexDirection: "row",
     gap: 8,
-    marginTop: 10,
+     marginTop: 20,
     marginBottom: 25,
   },
   progressLine: {
@@ -145,7 +145,14 @@ const styles = StyleSheet.create({
   },
   forgot: { color: "#FF4C4C", fontWeight: "bold" },
 
-  step: { fontSize: 16, color: "red", fontWeight: "600" },
+
+  step: {
+    fontSize: 25,
+    fontWeight: "600",
+    color: "#F91F1C",
+    fontFamily:"Poppins",
+    fontStyle:"normal"
+  },
 
   nextBtn: {
     width: 55,

@@ -120,7 +120,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  step: { fontSize: 18, fontWeight: "600", color: "red" },
+
+  step: {
+    fontSize: 25,
+    fontWeight: "600",
+    color: "#F91F1C",
+    fontFamily:"Poppins",
+    fontStyle:"normal"
+  },
 
   nextBtn: {
     width: 60,

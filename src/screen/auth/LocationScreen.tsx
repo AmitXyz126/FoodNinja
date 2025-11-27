@@ -37,6 +37,7 @@ export default function LocationScreen({ navigation }) {
 
       <Text style={styles.step}>4/4</Text>
       <GradientButton
+      style={styles.locationBtn}
         title="Use Location"
         onPress={() => navigation.navigate("AddAddressScreen")}
       />
@@ -75,5 +76,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: { color: "#fff", fontSize: 18, fontWeight: "600" },
-  step: { marginTop: 20, fontSize: 16, color: "red" },
+ 
+  step: {
+    fontSize: 25,
+    fontWeight: "600",
+    color: "#F91F1C",
+    fontFamily:"Poppins",
+    fontStyle:"normal"
+  },
+  locationBtn: {
+   
+    marginTop:100
+  }
 });

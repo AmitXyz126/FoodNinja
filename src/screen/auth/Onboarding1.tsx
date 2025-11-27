@@ -4,7 +4,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 
-
 const { height } = Dimensions.get("window");
 
 export default function Onboarding1() {
@@ -63,7 +62,6 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
 
-  /** Responsive Sections **/
   topSection: {
     flex: 3,
     justifyContent: "center",
@@ -82,13 +80,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  /** Responsive Image **/
   image: {
-    width: "80%", // Responsive width
-    height: height * 0.3, // Responsive height based on screen
+    width: "90%",
+    height: height * 0.5,
   },
-
-  /** Text Styles **/
+ 
   title: {
     fontSize: 40,
     fontWeight: "bold",

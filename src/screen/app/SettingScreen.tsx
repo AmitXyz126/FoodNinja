@@ -82,12 +82,12 @@ const SettingScreen = () => {
             />
 
             {/* Edit Icon */}
-            <TouchableOpacity style={styles.editIcon}>
+            {/* <TouchableOpacity style={styles.editIcon}>
               <Image
                 source={require("../../../assets/images/editprofile.png")}
                 style={{ width: 26, height: 26 }}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
           <View style={{ flex: 1, marginLeft: 12 }}>
@@ -284,17 +284,17 @@ const styles = StyleSheet.create({
   headerRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between", // important
+    justifyContent: "space-between",
     marginBottom: 12,
   },
 
   backBtn: {
-    width: 36,
-    height: 36,
+    width: 46,
+    height: 46,
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
-    elevation: 2,
+     
   },
 
   headerTitle: {

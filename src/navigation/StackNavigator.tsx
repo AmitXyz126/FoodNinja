@@ -11,6 +11,7 @@ import OrdersHistoryScreen from "@/screen/app/OrdersHistoryScreen";
 import CustomerSupportScreen from "@/screen/app/CustomerSupportScreen";
 import LanguageScreen from "@/screen/app/LanguageScreen";
 import DeleteAccountScreen from "@/screen/app/DeleteAccountScreen";
+import NotificationScreen from "@/screen/app/NotificationScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ export function HomeStackNavigator() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="HomeMain" component={HomeScreen} />
+        <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
     </Stack.Navigator>
   );
 }
@@ -52,6 +54,7 @@ export function SettingStackNavigator() {
       <Stack.Screen name="CustomerSupport" component={CustomerSupportScreen} />
       <Stack.Screen name="LanguageScreen" component={LanguageScreen} />
       <Stack.Screen name="DeleteAccountScreen" component={DeleteAccountScreen} />
+      <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
     </Stack.Navigator>
   );
 }

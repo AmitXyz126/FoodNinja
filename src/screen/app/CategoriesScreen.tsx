@@ -7,6 +7,7 @@ import {
   Pressable,
   Image,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
@@ -15,10 +16,13 @@ import FoodCard from "@/components/foodcard/FoodCard";
 import { FlatList, Switch } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "constants/theme";
+import { useNavigation } from "expo-router";
 
 const { width } = Dimensions.get("window");
 
 const CategoriesScreen = () => {
+const navigation = useNavigation<any>();
+
   const [activeCat, setActiveCat] = React.useState("Pizza");
   const [isDefault, setIsDefault] = React.useState(false);
 
@@ -42,12 +46,20 @@ const CategoriesScreen = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {/* Top Bar */}
-        <View style={styles.header}>
-          <Ionicons name="chevron-back" size={26} />
-          <Text style={styles.title}>Categories</Text>
-          <Ionicons name="notifications-outline" size={24} />
-        </View>
+       <View style={styles.header}>
+      {/* Back Button */}
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ionicons name="chevron-back" size={26} />
+      </TouchableOpacity>
 
+      <Text style={styles.title}>Categories</Text>
+
+      {/* Notification Button */}
+      <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
+        <Ionicons name="notifications-outline" size={24} />
+      </TouchableOpacity>
+    </View>
+ 
  
         <View style={styles.searchRow}>
           <View style={{ flex: 1 }}>

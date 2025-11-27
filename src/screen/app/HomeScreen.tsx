@@ -2,7 +2,8 @@ import FoodCard from "@/components/foodcard/FoodCard";
 import SearchBar from "@/components/searchbar/SearchBar";
 import SpecialDealCard from "@/components/specialdeal/SpecialDealCard";
 import { Colors } from "constants/theme";
-import React from "react";
+import { useNavigation } from "expo-router";
+import React, { use } from "react";
 import {
   Dimensions,
   FlatList,
@@ -11,6 +12,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { Switch } from "react-native-gesture-handler";
@@ -19,6 +21,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const { width } = Dimensions.get("window");
 
 const HomeScreen = () => {
+  const navigation = useNavigation<any>();
+
   const [activeCat, setActiveCat] = React.useState("Pizza");
   const [isDefault, setIsDefault] = React.useState(false);
 
@@ -53,12 +57,16 @@ const HomeScreen = () => {
               <Text style={styles.location}>Mohali</Text>
             </View>
           </View>
-
           <View style={styles.topbar}>
-            <Image
-              style={styles.notification}
-              source={require("../../../assets/images/notification.png")}
-            />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("NotificationScreen")}
+            >
+              <Image
+                style={styles.notification}
+                source={require("../../../assets/images/notification.png")}
+              />
+            </TouchableOpacity>
+
             <Image
               source={require("../../../assets/images/profile.png")}
               style={styles.profile}
@@ -249,7 +257,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-    paddingVertical:20,
+    paddingVertical: 20,
   },
 
   sectionTitle: { fontSize: 20, fontWeight: "700" },

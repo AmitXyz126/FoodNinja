@@ -11,6 +11,7 @@ import {
   Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "expo-router";
 
 type Message = {
   id: string;
@@ -20,6 +21,8 @@ type Message = {
 };
 
 export default function CustomerSupportChatScreen() {
+  const navigation = useNavigation<any>();
+
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -101,7 +104,7 @@ export default function CustomerSupportChatScreen() {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.headerRow}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="chevron-back" size={26} color="#444" />
         </TouchableOpacity>
 

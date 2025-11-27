@@ -54,7 +54,15 @@ const TabNavigator = () => {
         name="SettingTab"
         options={({ route }) => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? "Setting";
-          const hideOnScreens = ["EditProfile", "myAddressesScreen", "myOrder", "CustomerSupport", "LanguageScreen","DeleteAccountScreen"];
+          const hideOnScreens = [
+            "EditProfile",
+            "myAddressesScreen",
+            "myOrder",
+            "CustomerSupport",
+            "LanguageScreen",
+            "DeleteAccountScreen",
+            "NotificationScreen",
+          ];
 
           return {
             tabBarStyle: hideOnScreens.includes(routeName)
