@@ -21,7 +21,7 @@ import { useNavigation } from "expo-router";
 const { width } = Dimensions.get("window");
 
 const CategoriesScreen = () => {
-const navigation = useNavigation<any>();
+  const navigation = useNavigation<any>();
 
   const [activeCat, setActiveCat] = React.useState("Pizza");
   const [isDefault, setIsDefault] = React.useState(false);
@@ -46,21 +46,22 @@ const navigation = useNavigation<any>();
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {/* Top Bar */}
-       <View style={styles.header}>
-      {/* Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Ionicons name="chevron-back" size={26} />
-      </TouchableOpacity>
+        <View style={styles.header}>
+          {/* Back Button */}
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={26} />
+          </TouchableOpacity>
 
-      <Text style={styles.title}>Categories</Text>
+          <Text style={styles.title}>Categories</Text>
 
-      {/* Notification Button */}
-      <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
-        <Ionicons name="notifications-outline" size={24} />
-      </TouchableOpacity>
-    </View>
- 
- 
+          {/* Notification Button */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate("NotificationScreen")}
+          >
+            <Ionicons name="notifications-outline" size={24} />
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.searchRow}>
           <View style={{ flex: 1 }}>
             <SearchBar />
@@ -78,7 +79,6 @@ const navigation = useNavigation<any>();
           </View>
         </View>
 
-   
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.categoryRow}>
             {categories.map((item) => (
@@ -112,11 +112,19 @@ const navigation = useNavigation<any>();
 
         {/* Food Cards */}
         <FlatList
-          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          data={[1, 2, 3, 4,5,6]}
           renderItem={() => <FoodCard />}
           keyExtractor={(item) => item.toString()}
+          numColumns={2} // ← IMPORTANT
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.foodCardList}
+          columnWrapperStyle={{
+            justifyContent: "space-between",
+            marginBottom: 15,
+          }}
+          contentContainerStyle={{
+            paddingHorizontal: 10,
+            paddingTop: 10,
+          }}
         />
 
         <View style={{ height: 30 }} />
@@ -141,7 +149,6 @@ const styles = StyleSheet.create({
 
   title: { fontSize: 20, fontWeight: "700" },
 
- 
   searchRow: {
     flexDirection: "row",
     marginBottom: 25,
@@ -152,8 +159,12 @@ const styles = StyleSheet.create({
   vegContainer: {
     alignItems: "center",
     justifyContent: "center",
-    gap: 2,
     paddingRight: 20,
+    backgroundColor: "#F8F8F8",
+    padding: 10,
+    borderRadius: 10,
+    gap: 3,
+    marginRight: 18,
   },
 
   vegText: {
@@ -163,7 +174,6 @@ const styles = StyleSheet.create({
     color: "#555",
   },
 
- 
   categoryRow: {
     flexDirection: "row",
     gap: 18,
@@ -203,7 +213,6 @@ const styles = StyleSheet.create({
     color: "#000",
   },
 
- 
   topFoodRow: {
     marginBottom: 15,
     flexDirection: "row",

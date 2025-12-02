@@ -2,7 +2,7 @@
 import GradientButton from "@/components/gradientbutton/GradientButton";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import MapView from "react-native-maps";
+// import MapView from "react-native-maps";
 
 export default function LocationScreen({ navigation }) {
   const step = 4;
@@ -33,7 +33,7 @@ export default function LocationScreen({ navigation }) {
         This data will be displayed in your account profile for security
       </Text>
 
-      <MapView style={styles.map} />
+      {/* <MapView style={styles.map} /> */}
 
       <Text style={styles.step}>4/4</Text>
       <GradientButton

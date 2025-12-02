@@ -2,6 +2,7 @@ import EditProfileScreen from "@/screen/app/EditProfileScreen";
 import CartScreen from "@/screen/app/CartScreen";
 import CategoriesScreen from "@/screen/app/CategoriesScreen";
 import FoodListScreen from "@/screen/app/FoodListScreen";
+import SingleFoodList from "@/screen/app/SingleFoodList";
 import HomeScreen from "@/screen/app/HomeScreen";
 import SettingScreen from "@/screen/app/SettingScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -22,7 +23,7 @@ export function HomeStackNavigator() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="HomeMain" component={HomeScreen} />
-        <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
+      <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
     </Stack.Navigator>
   );
 }
@@ -32,6 +33,7 @@ export function CategoriesStackNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Categories" component={CategoriesScreen} />
       <Stack.Screen name="FoodList" component={FoodListScreen} />
+      <Stack.Screen name="singleFoodList" component={SingleFoodList} />
     </Stack.Navigator>
   );
 }
@@ -46,14 +48,20 @@ export function CartStackNavigator() {
 
 export function SettingStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Setting" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      initialRouteName="Setting"
+      screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="Setting" component={SettingScreen} />
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
       <Stack.Screen name="myAddressesScreen" component={MyAddressesScreen} />
       <Stack.Screen name="myOrder" component={OrdersHistoryScreen} />
       <Stack.Screen name="CustomerSupport" component={CustomerSupportScreen} />
       <Stack.Screen name="LanguageScreen" component={LanguageScreen} />
-      <Stack.Screen name="DeleteAccountScreen" component={DeleteAccountScreen} />
+      <Stack.Screen
+        name="DeleteAccountScreen"
+        component={DeleteAccountScreen}
+      />
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
     </Stack.Navigator>
   );

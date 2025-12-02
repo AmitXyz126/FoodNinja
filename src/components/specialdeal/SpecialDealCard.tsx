@@ -45,7 +45,7 @@ export default SpecialDealCard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderRadius: 26,
+    borderRadius: 16,
     padding: 18,
     marginTop: 20,
     flexDirection: "row",
