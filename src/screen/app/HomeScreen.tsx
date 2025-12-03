@@ -126,7 +126,7 @@ const HomeScreen = () => {
                     styles.catText,
                     activeCat === item.name && { color: "#E53935" },
                   ]}
-                >
+                > 
                   {item.name}
                 </Text>
               </Pressable>
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
 
   sectionTitle: { fontSize: 20, fontWeight: "700" },
 
-  viewMore: { color: "#E53935", fontWeight: "600" },
+  viewMore: { color: "#E53935", fontWeight: "500", fontSize: 14, fontFamily:"Poppins"  },
 
   foodCardList: {
     flexDirection: "row",

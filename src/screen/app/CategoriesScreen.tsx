@@ -112,7 +112,7 @@ const CategoriesScreen = () => {
 
         {/* Food Cards */}
         <FlatList
-          data={[1, 2, 3, 4,5,6]}
+          data={[1, 2, 3, 4,5,6,7]}
           renderItem={() => <FoodCard />}
           keyExtractor={(item) => item.toString()}
           numColumns={2} // ← IMPORTANT
