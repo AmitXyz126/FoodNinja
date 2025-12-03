@@ -60,7 +60,7 @@ const SettingScreen = () => {
           >
             <Image
               source={require("../../../assets/images/back.png")}
-              style={{ width: 26, height: 26 }}
+              style={{ width: 46, height: 45 }}
             />
           </Pressable>
 
@@ -293,6 +293,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
+    
   },
 
   headerTitle: {

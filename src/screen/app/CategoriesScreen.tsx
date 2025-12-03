@@ -1,34 +1,39 @@
 import React from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-  Image,
   Dimensions,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
 
-import { Ionicons } from "@expo/vector-icons";
-import SearchBar from "@/components/searchbar/SearchBar";
 import FoodCard from "@/components/foodcard/FoodCard";
-import { FlatList, Switch } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
+import SearchBar from "@/components/searchbar/SearchBar";
+import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "constants/theme";
 import { useNavigation } from "expo-router";
+import { FlatList, Switch } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get("window");
 
 const CategoriesScreen = () => {
   const navigation = useNavigation<any>();
 
-  const [activeCat, setActiveCat] = React.useState("Pizza");
+  const [activeCat, setActiveCat] = React.useState("All");
   const [isDefault, setIsDefault] = React.useState(false);
 
   const categories = [
     {
       id: 1,
+      name: "All",
+      icon: require("../../../assets/images/allitem.png"),
+    },
+    {
+      id: 2,
       name: "Pizza",
       icon: require("../../../assets/images/small.png"),
     },
@@ -112,17 +117,17 @@ const CategoriesScreen = () => {
 
         {/* Food Cards */}
         <FlatList
-          data={[1, 2, 3, 4,5,6,7]}
+          data={[1,2,3,4,5,6,7 ]}
           renderItem={() => <FoodCard />}
           keyExtractor={(item) => item.toString()}
-          numColumns={2} // ← IMPORTANT
+          numColumns={2}  
           showsVerticalScrollIndicator={false}
           columnWrapperStyle={{
             justifyContent: "space-between",
             marginBottom: 15,
           }}
           contentContainerStyle={{
-            paddingHorizontal: 10,
+            paddingHorizontal:10,
             paddingTop: 10,
           }}
         />

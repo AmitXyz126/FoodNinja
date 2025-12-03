@@ -17,7 +17,7 @@ const foodItems = [
     oldPrice: 120,
     price: 99,
     rating: 4.5,
-    image: require("../../assets/images/FoodDetail.png"),
+    image: require("../../../assets/images/FoodDetail.png"),
   },
   // duplicate items for list
   ...Array(6).fill({
@@ -26,7 +26,7 @@ const foodItems = [
     oldPrice: 120,
     price: 99,
     rating: 4.5,
-    image: require("../../assets/images/FoodDetail.png"),
+    image: require("../../../assets/images/FoodDetail.png"),
   }),
 ];
 

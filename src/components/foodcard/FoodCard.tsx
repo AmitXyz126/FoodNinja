@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: 8,
     paddingVertical: 3,
-    borderRadius: 10,
+    borderRadius: 4,
     elevation: 3,
   },
 
@@ -99,9 +99,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 8,
     right: 8,
-    backgroundColor: "#fff",
+    backgroundColor: "#FED2D2",
     padding: 6,
-    borderRadius: 50,
+    borderRadius:4,
     elevation: 3,
   },
 
@@ -109,11 +109,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 10,
+    gap:3
   },
 
   title: {
     fontSize: 14,
     fontWeight: "600",
+    color:"#333"
   },
 
   price: {
@@ -136,6 +138,6 @@ const styles = StyleSheet.create({
   infoText: {
     marginLeft: 4,
     fontSize: 12,
-    color: "#6D6D6D",
+    color: "#666",
   },
 });

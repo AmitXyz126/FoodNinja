@@ -24,12 +24,17 @@ const { width } = Dimensions.get("window");
 const HomeScreen = () => {
   const navigation = useNavigation<any>();
 
-  const [activeCat, setActiveCat] = React.useState("Pizza");
+  const [activeCat, setActiveCat] = React.useState("All");
   const [isDefault, setIsDefault] = React.useState(false);
 
   const categories = [
     {
       id: 1,
+      name: "All",
+      icon: require("../../../assets/images/allitem.png"),
+    },
+    {
+      id: 2,
       name: "Pizza",
       icon: require("../../../assets/images/small.png"),
     },
@@ -126,7 +131,7 @@ const HomeScreen = () => {
                     styles.catText,
                     activeCat === item.name && { color: "#E53935" },
                   ]}
-                > 
+                >
                   {item.name}
                 </Text>
               </Pressable>
@@ -159,10 +164,10 @@ const HomeScreen = () => {
 
         {/* Food Cards */}
         <FlatList
-          data={[1, 2, 3, 4]}
+          data={[1, 2, 3, 4, 5, 6]}
           renderItem={() => <FoodCard />}
           keyExtractor={(item) => item.toString()}
-          numColumns={2} // ← IMPORTANT
+          numColumns={2}
           showsVerticalScrollIndicator={false}
           columnWrapperStyle={{
             justifyContent: "space-between",
@@ -307,7 +312,12 @@ const styles = StyleSheet.create({
 
   sectionTitle: { fontSize: 20, fontWeight: "700" },
 
-  viewMore: { color: "#E53935", fontWeight: "500", fontSize: 14, fontFamily:"Poppins"  },
+  viewMore: {
+    color: "#E53935",
+    fontWeight: "500",
+    fontSize: 14,
+    fontFamily: "Poppins",
+  },
 
   foodCardList: {
     flexDirection: "row",

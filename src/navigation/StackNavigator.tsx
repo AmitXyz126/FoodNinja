@@ -13,6 +13,7 @@ import CustomerSupportScreen from "@/screen/app/CustomerSupportScreen";
 import LanguageScreen from "@/screen/app/LanguageScreen";
 import DeleteAccountScreen from "@/screen/app/DeleteAccountScreen";
 import NotificationScreen from "@/screen/app/NotificationScreen";
+import CategoriesList from "@/screen/app/CategoriesList";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ export function HomeStackNavigator() {
     >
       <Stack.Screen name="HomeMain" component={HomeScreen} />
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
+ 
     </Stack.Navigator>
   );
 }
@@ -34,6 +36,7 @@ export function CategoriesStackNavigator() {
       <Stack.Screen name="Categories" component={CategoriesScreen} />
       <Stack.Screen name="FoodList" component={FoodListScreen} />
       <Stack.Screen name="singleFoodList" component={SingleFoodList} />
+      <Stack.Screen name="categoriesList" component={CategoriesList}      /> 
     </Stack.Navigator>
   );
 }
