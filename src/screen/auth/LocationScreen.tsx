@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     fontStyle:"normal"
   },
   locationBtn: {
-   
     marginTop:100
   }
 });

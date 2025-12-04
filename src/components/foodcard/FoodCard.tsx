@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     right: 8,
     backgroundColor: "#FED2D2",
     padding: 6,
-    borderRadius:4,
+    borderRadius: 4,
     elevation: 3,
   },
 
@@ -109,13 +109,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 10,
-    gap:3
+    gap: 3,
   },
 
   title: {
     fontSize: 14,
     fontWeight: "600",
-    color:"#333"
+    color: "#333",
   },
 
   price: {
