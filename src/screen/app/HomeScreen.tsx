@@ -28,13 +28,9 @@ const HomeScreen = () => {
   const [isDefault, setIsDefault] = React.useState(false);
 
   const categories = [
+  
     {
       id: 1,
-      name: "All",
-      icon: require("../../../assets/images/allitem.png"),
-    },
-    {
-      id: 2,
       name: "Pizza",
       icon: require("../../../assets/images/small.png"),
     },
@@ -44,7 +40,7 @@ const HomeScreen = () => {
       icon: require("../../../assets/images/burger.png"),
     },
     { id: 3, name: "Pasta", icon: require("../../../assets/images/pasta.png") },
-    { id: 4, name: "Tacos", icon: require("../../../assets/images/tacos.png") },
+    { id: 6, name: "Tacos", icon: require("../../../assets/images/tacos.png") },
   ];
 
   return (

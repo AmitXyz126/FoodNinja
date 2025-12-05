@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
 
   /* Responsive Image */
   image: {
-    width: "80%",
-    height: height * 0.3, // Responsive
+    width: "90%",
+    height: height * 0.5,
   },
 
   /* Text */

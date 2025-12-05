@@ -39,12 +39,12 @@ const CategoriesScreen = () => {
     },
 
     {
-      id: 2,
+      id: 3,
       name: "Burger",
       icon: require("../../../assets/images/burger.png"),
     },
-    { id: 3, name: "Pasta", icon: require("../../../assets/images/pasta.png") },
-    { id: 4, name: "Tacos", icon: require("../../../assets/images/tacos.png") },
+    { id: 4, name: "Pasta", icon: require("../../../assets/images/pasta.png") },
+    { id: 5, name: "Tacos", icon: require("../../../assets/images/tacos.png") },
   ];
 
   return (

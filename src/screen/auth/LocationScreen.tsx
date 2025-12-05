@@ -33,7 +33,7 @@ export default function LocationScreen({ navigation }) {
         This data will be displayed in your account profile for security
       </Text>
 
-      <MapView style={styles.map} />
+      {/* <MapView style={styles.map} /> */}
 
       <Text style={styles.step}>4/4</Text>
       <GradientButton
@@ -85,6 +85,6 @@ const styles = StyleSheet.create({
     fontStyle:"normal"
   },
   locationBtn: {
-    marginTop:100
+    marginTop:90
   }
 });

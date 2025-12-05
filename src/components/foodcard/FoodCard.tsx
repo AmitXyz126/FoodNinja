@@ -1,48 +1,54 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+ 
+
 
 const FoodCard: React.FC = () => {
+  const navigation = useNavigation<any>();
   return (
-    <View style={styles.card}>
-      {/* IMAGE + BADGES */}
-      <View style={styles.imgWrapper}>
-        <Image
-          source={require("../../../assets/images/FoodDetail.png")}
-          style={styles.img}
-        />
+    <TouchableOpacity onPress={() => navigation.navigate("CategoriesTab",{screen:'productDetail'})}>
+      <View style={styles.card}>
+        {/* IMAGE + BADGES */}
+        <View style={styles.imgWrapper}>
+          <Image
+            source={require("../../../assets/images/FoodDetail.png")}
+            style={styles.img}
+          />
 
-        {/* Rating Badge */}
-        <View style={styles.ratingBadge}>
-          <Ionicons name="star" size={14} color="#0AB451" />
-          <Text style={styles.ratingText}>4/5</Text>
+          {/* Rating Badge */}
+          <View style={styles.ratingBadge}>
+            <Ionicons name="star" size={14} color="#0AB451" />
+            <Text style={styles.ratingText}>4/5</Text>
+          </View>
+
+          {/* Heart Badge */}
+          <View style={styles.heartBadge}>
+            <Ionicons name="heart" size={15} color="red" />
+          </View>
         </View>
 
-        {/* Heart Badge */}
-        <View style={styles.heartBadge}>
-          <Ionicons name="heart" size={15} color="red" />
+        {/* TITLE + PRICE */}
+        <View style={styles.row}>
+          <Text style={styles.title}>Tasty Mexican Pizza</Text>
+          <Text style={styles.price}>$99</Text>
+        </View>
+
+        {/* CALORIES + TIME */}
+        <View style={styles.infoRow}>
+          <View style={styles.infoItem}>
+            <Ionicons name="flame" size={16} color="#FF5722" />
+            <Text style={styles.infoText}>124 Kcal</Text>
+          </View>
+
+          <View style={styles.infoItem}>
+            <Ionicons name="time-outline" size={16} color="#FFA000" />
+            <Text style={styles.infoText}>8–10 min</Text>
+          </View>
         </View>
       </View>
-
-      {/* TITLE + PRICE */}
-      <View style={styles.row}>
-        <Text style={styles.title}>Tasty Mexican Pizza</Text>
-        <Text style={styles.price}>$99</Text>
-      </View>
-
-      {/* CALORIES + TIME */}
-      <View style={styles.infoRow}>
-        <View style={styles.infoItem}>
-          <Ionicons name="flame" size={16} color="#FF5722" />
-          <Text style={styles.infoText}>124 Kcal</Text>
-        </View>
-
-        <View style={styles.infoItem}>
-          <Ionicons name="time-outline" size={16} color="#FFA000" />
-          <Text style={styles.infoText}>8–10 min</Text>
-        </View>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
