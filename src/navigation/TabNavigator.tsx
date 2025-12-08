@@ -82,6 +82,7 @@ const TabNavigator = () => {
             "LanguageScreen",
             "DeleteAccountScreen",
             "NotificationScreen",
+            "MyCartList"
           ];
 
           return {
@@ -101,6 +102,7 @@ const TabNavigator = () => {
         }}
         component={CategoriesStackNavigator}
       />
+
       <Tab.Screen name="CartTab" component={CartStackNavigator} />
       <Tab.Screen
         name="SettingTab"

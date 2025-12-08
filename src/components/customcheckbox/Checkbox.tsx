@@ -5,7 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 interface Props {
   checked: boolean;
   onChange: () => void;
-  label?: string; // 👈 NEW PROP
+  label?: string; 
 }
 
 const CustomCheckBox: React.FC<Props> = ({ checked, onChange, label }) => {
@@ -19,9 +19,9 @@ const CustomCheckBox: React.FC<Props> = ({ checked, onChange, label }) => {
         {checked && <MaterialIcons name="check" size={18} color="#D73A00" />}
       </View>
 
-      <Text style={styles.label}>
+     { label && <Text style={styles.label}>
         {label || "Remember me"}  
-      </Text>
+      </Text>}
     </TouchableOpacity>
   );
 };
