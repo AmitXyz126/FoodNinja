@@ -15,6 +15,8 @@ import DeleteAccountScreen from "@/screen/app/DeleteAccountScreen";
 import NotificationScreen from "@/screen/app/NotificationScreen";
 import ProductDetailScreen from "@/screen/app/ProductDetailScreen";
 import MyCartList from "@/screen/app/MyCartList";
+import AddAddressScreen from "@/screen/auth/AddAddressScreen";
+import AddressScreen from "@/screen/app/AddressScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +48,7 @@ export function CartStackNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Cart" component={CartScreen} />
+      <Stack.Screen name="Address" component={AddressScreen} />
     </Stack.Navigator>
   );
 }

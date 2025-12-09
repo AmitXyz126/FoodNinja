@@ -6,7 +6,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import Checkbox from "expo-checkbox";
-
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import {
   Image,
@@ -19,13 +19,22 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Swiper from "react-native-swiper";
 
+// 1️⃣ Define your navigation type
+type RootStackParamList = {
+  Home: undefined;
+  MyCartList: undefined;
+  ProductDetails: { id: string };
+};
+
+// 2️⃣ Type your navigation
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export default function ProductDetailScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
+
   const params = useLocalSearchParams();
   const [quantity, setQuantity] = React.useState(1);
   // const [isChecked, setChecked] = useState(false);
-  
-
 
   const bottomSheetRef = React.useRef<BaseBottomSheetRef>(null);
   const [sheetQty, setSheetQty] = React.useState(1);
@@ -53,6 +62,12 @@ export default function ProductDetailScreen() {
     });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type RootStackParamList = {
+    Home: undefined;
+    MyCartList: undefined; 
+    ProductDetails: { id: string };
+  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
@@ -294,7 +309,7 @@ export default function ProductDetailScreen() {
             <TouchableOpacity style={styles.addBtn}>
               <GradientButton
                 title="Add to Cart"
-                style={{ width: "130%" }}
+                style={{ width: "100%" }}
                 onPress={() => {
                   bottomSheetRef.current?.dismiss();
                   navigation.navigate("MyCartList");

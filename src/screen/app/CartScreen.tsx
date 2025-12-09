@@ -9,9 +9,12 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
-import { router } from "expo-router";
+ 
+import GradientButton from "@/components/gradientbutton/GradientButton";
+import { router, useNavigation } from "expo-router";
 
 export default function CartScreen() {
+  const navigation = useNavigation();
   const cartItems = [
     {
       id: 1,
@@ -34,22 +37,28 @@ export default function CartScreen() {
         <TouchableOpacity onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={28} color="#222" />
         </TouchableOpacity>
+
         <Text style={styles.headerText}>Order</Text>
+
         <TouchableOpacity>
           <Ionicons name="share-social-outline" size={22} color="#444" />
         </TouchableOpacity>
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
+        {/* CART LIST */}
         {cartItems.map((item) => (
           <View key={item.id} style={styles.cartCard}>
             <Image source={item.img} style={styles.foodImg} />
 
-            <View style={{ flex: 1, marginLeft: 10 }}>
+            {/* MIDDLE CONTENT */}
+            <View style={styles.middle}>
               <Text style={styles.foodTitle}>{item.title}</Text>
+              <Text style={styles.notEligible}>not eligible for coupons</Text>
 
               <Text style={styles.foodPrice}>${item.price}</Text>
 
+              {/* RATING ROW */}
               <View style={styles.ratingRow}>
                 <Ionicons name="star" size={16} color="#FFB800" />
                 <Text style={styles.rate}>4.6</Text>
@@ -58,7 +67,7 @@ export default function CartScreen() {
                   name="delivery-dining"
                   size={16}
                   color="#FF1D1D"
-                  style={{ marginLeft: 10 }}
+                  style={{ marginLeft: 14 }}
                 />
                 <Text style={styles.rate}>16 min</Text>
 
@@ -66,81 +75,81 @@ export default function CartScreen() {
                   name="location-outline"
                   size={16}
                   color="#FF1D1D"
-                  style={{ marginLeft: 10 }}
+                  style={{ marginLeft: 14 }}
                 />
                 <Text style={styles.rate}>1.5KM</Text>
               </View>
-              <View style={styles.addmore}>
-                <TouchableOpacity>
-                  <Text style={styles.addMore}>+ Add more items</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity>
-                  <Text style={styles.addNote}>
-                    Add a note for the restaurant
-                  </Text>
-                </TouchableOpacity>
-              </View>
             </View>
 
-            {/* QTY */}
+            {/* QTY RIGHT SIDE */}
             <View style={styles.qtyBox}>
-              <TouchableOpacity style={styles.minusBtn}>
-                <Text style={styles.minusText}>−</Text>
+              <TouchableOpacity style={styles.qtyMinusBtn}>
+                <Ionicons name="remove-outline" size={20} color="#FF1D1D" />
               </TouchableOpacity>
 
-              <Text style={styles.qty}>01</Text>
+              <Text style={styles.qtyNumber}>01</Text>
 
-              <TouchableOpacity style={styles.plusBtn}>
-                <Text style={styles.plusText}>+</Text>
+              <TouchableOpacity style={styles.qtyPlusBtn}>
+                <Ionicons name="add" size={20} color="#fff" />
               </TouchableOpacity>
             </View>
           </View>
         ))}
 
-        {/* DISCOUNT */}
-        <View style={styles.discountBox}>
-          <Text style={styles.discountLabel}>
-            Do you have any Discount Code?
-          </Text>
-          <TouchableOpacity style={styles.applyBtn}>
-            <Text style={styles.applyText}>Apply</Text>
+        {/* DISCOUNT BOX */}
+        <View style={styles.coupons}>
+          <View style={styles.discountBox}>
+            <Text style={styles.discountLabel}>
+              Do you have any Discount Code?
+            </Text>
+
+            <TouchableOpacity style={styles.applyBtn}>
+              <Text style={styles.applyText}>Apply</Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity style={styles.couponRow}>
+            <Ionicons name="pricetags-outline" size={18} color="#FF1D1D" />
+            <Text style={styles.couponText}>View All Coupons</Text>
+            <Ionicons
+              name="chevron-forward"
+              size={20}
+              style={{ marginLeft: "auto" }}
+            />
           </TouchableOpacity>
         </View>
 
-        {/* COUPONS */}
-        <TouchableOpacity style={styles.couponRow}>
-          <Ionicons name="pricetags-outline" size={18} color="#FF1D1D" />
-          <Text style={styles.couponText}>View All Coupons</Text>
-          <Ionicons
-            name="chevron-forward"
-            size={20}
-            style={{ marginLeft: "auto" }}
-          />
-        </TouchableOpacity>
+        {/* DELIVERY INFO & TOTAL */}
+        <View style={styles.delivery}>
+          <View style={styles.deliveryBox}>
+            <MaterialIcons name="delivery-dining" size={20} color="#FF1D1D" />
+            <Text style={styles.deliveryText}>Delivery in 30–35 mins</Text>
 
-        {/* DELIVERY */}
-        <View style={styles.deliveryBox}>
-          <MaterialIcons name="delivery-dining" size={20} color="#FF1D1D" />
-          <Text style={styles.deliveryText}>Delivery in 30–35 mins</Text>
-          <Text style={styles.later}>Schedule it</Text>
-        </View>
+            <Text
+              style={styles.scheduleText}
+              onPress={() => navigation.navigate("")}
+            >
+              Schedule it
+            </Text>
+          </View>
 
-        {/* TOTAL */}
-        <View style={styles.totalBox}>
-          <Text style={styles.totalLabel}>Total Bill</Text>
+          <View style={styles.totalBox}>
+            <Text style={styles.totalLabel}>Total Bill</Text>
 
-          <View style={{ alignItems: "flex-end" }}>
-            <Text style={styles.oldPrice}>$129.98</Text>
-            <Text style={styles.newPrice}>$99.98</Text>
-            <Text style={styles.save}>You save $30!</Text>
+            <View style={{ alignItems: "flex-end" }}>
+              <Text style={styles.oldPrice}>$129.98</Text>
+              <Text style={styles.newPrice}>$99.98</Text>
+              <Text style={styles.save}>You save $30!</Text>
+            </View>
           </View>
         </View>
 
-        {/* NEXT STEP */}
-        <TouchableOpacity style={styles.nextBtn}>
-          <Text style={styles.nextText}>Select address at next step</Text>
-        </TouchableOpacity>
+        {/* NEXT STEP BUTTON */}
+        <GradientButton
+          title="Select address at next step"
+          style={{ width: "90%", marginHorizontal: 16, marginTop: 20 }}
+          onPress={() => navigation.navigate("Address")}
+        />
 
         <View style={{ height: 40 }} />
       </ScrollView>
@@ -148,141 +157,149 @@ export default function CartScreen() {
   );
 }
 
+// ---------- STYLES ----------
 const styles = StyleSheet.create({
   header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
     padding: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-  headerText: { fontSize: 18, fontWeight: "600" },
+  headerText: { fontSize: 20, fontWeight: "700", color: "#222" },
 
   cartCard: {
     flexDirection: "row",
-    backgroundColor: "#F9F9F9",
-    padding: 10,
-    borderRadius: 14,
+    backgroundColor: "#fff",
+    padding: 16,
+    borderRadius: 18,
     marginHorizontal: 16,
     marginTop: 14,
-    elevation: 2,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
   },
 
-  foodImg: { width: 80, height: 80, borderRadius: 12 },
-  foodTitle: { fontSize: 16, fontWeight: "700" },
-  foodPrice: { fontSize: 15, color: "#333", marginTop: 6 },
-
-  ratingRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 6,
-  },
-  rate: { marginLeft: 4, color: "#444" },
-addmore:{
-flexDirection:"row",  
-},
-  addMore: {
-    marginTop: 8,
-    color: "#28A745",
-    fontWeight: "600",
-  },
-  addNote: {
-    color: "#777",
-    marginTop: 6,
-    fontSize: 12,
+  foodImg: {
+    width: 85,
+    height: 85,
+    borderRadius: 12,
+    resizeMode: "cover",
+    overflow: "hidden",
   },
 
-  qtyBox: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  minusBtn: {
+  middle: { flex: 1, marginLeft: 12 },
+
+  foodTitle: { fontSize: 16, fontWeight: "700", color: "#222" },
+
+  notEligible: { fontSize: 12, color: "#999", marginTop: 2 },
+
+  foodPrice: { fontSize: 16, fontWeight: "700", marginTop: 6, color: "#222" },
+
+  ratingRow: { flexDirection: "row", alignItems: "center", marginTop: 4 },
+
+  rate: { marginLeft: 4, color: "#555", fontSize: 13 },
+
+  qtyBox: { flexDirection: "row", gap: 8 },
+
+  qtyMinusBtn: {
     width: 28,
     height: 28,
-    borderWidth: 1,
     borderRadius: 8,
+    borderWidth: 1.5,
     borderColor: "#FF1D1D",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
-  minusText: { fontSize: 22, color: "#FF1D1D" },
-  plusBtn: {
+
+  qtyPlusBtn: {
     width: 28,
     height: 28,
     backgroundColor: "#FF1D1D",
     borderRadius: 8,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
-  plusText: { fontSize: 20, color: "#fff" },
-  qty: { fontSize: 16, fontWeight: "700", marginHorizontal: 8 },
 
+  qtyNumber: { fontSize: 15, fontWeight: "700", marginVertical: 6 },
+
+  coupons: {
+    backgroundColor: "#FFF",
+    shadowColor: "#000",
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+    marginHorizontal: 16,
+    marginTop: 20,
+    borderRadius: 18,
+  },
   discountBox: {
-    backgroundColor: "#FFF5F5",
+    backgroundColor: "#FFF4F4",
     padding: 16,
     marginHorizontal: 16,
-    borderRadius: 14,
+    borderRadius: 16,
     marginTop: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
   discountLabel: { fontSize: 14, color: "#444" },
+
   applyBtn: {
-    backgroundColor: "#FF1D1D",
+    backgroundColor: "#FF5B5B",
     paddingVertical: 6,
-    paddingHorizontal: 14,
+    paddingHorizontal: 18,
     borderRadius: 10,
   },
-  applyText: { color: "#fff" },
+
+  applyText: { color: "#fff", fontWeight: "700" },
 
   couponRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 14,
     marginHorizontal: 16,
+    marginTop: 14,
+    marginBottom: 20,
   },
-  couponText: { marginLeft: 8, fontWeight: "600", color: "#444" },
 
+  couponText: { marginLeft: 8, color: "#444", fontWeight: "600" },
+
+  delivery: {
+    backgroundColor: "#FFF",
+    shadowColor: "#000",
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+    marginHorizontal: 16,
+    marginTop: 20,
+    borderRadius: 18,
+  },
   deliveryBox: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#FAFAFA",
-    marginTop: 20,
+    backgroundColor: "#F8F8F8",
     padding: 16,
-    borderRadius: 12,
     marginHorizontal: 16,
+    borderRadius: 14,
+    marginTop: 20,
+    marginBottom: 20,
   },
   deliveryText: { marginLeft: 10, fontWeight: "500" },
-  later: {
-    marginLeft: "auto",
-    color: "#FF1D1D",
-    fontWeight: "600",
-  },
+
+  scheduleText: { marginLeft: "auto", color: "#FF1D1D", fontWeight: "600" },
 
   totalBox: {
     backgroundColor: "#FFF8F2",
     padding: 16,
     marginHorizontal: 16,
-    borderRadius: 14,
+    borderRadius: 16,
     marginTop: 20,
+    marginBottom: 20,
   },
-  totalLabel: { fontSize: 16, fontWeight: "700" },
-  oldPrice: {
-    fontSize: 12,
-    textDecorationLine: "line-through",
-    color: "#aaa",
-  },
-  newPrice: { fontSize: 20, fontWeight: "700", marginTop: 2 },
-  save: { color: "#28A745", marginTop: 2 },
 
-  nextBtn: {
-    backgroundColor: "#FF1D1D",
-    padding: 16,
-    marginHorizontal: 16,
-    borderRadius: 14,
-    marginTop: 20,
-    alignItems: "center",
-  },
-  nextText: { color: "#fff", fontSize: 16, fontWeight: "700" },
+  totalLabel: { fontSize: 16, fontWeight: "700", marginBottom: 4 },
+
+  oldPrice: { fontSize: 12, textDecorationLine: "line-through", color: "#aaa" },
+
+  newPrice: { fontSize: 20, fontWeight: "800", marginTop: 2 },
+
+  save: { color: "#28A745", marginTop: 2, fontWeight: "600" },
 });

@@ -14,7 +14,7 @@ import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function MyCartList() {
-     const navigation = useNavigation();
+  const navigation = useNavigation();
   const recommendData = [
     {
       id: 1,
@@ -148,8 +148,13 @@ export default function MyCartList() {
           <Text style={styles.bottomText}>2 items added</Text>
         </View>
 
-        <TouchableOpacity    style={styles.viewCartBtn}>
-          <Text style={styles.btnText}>View Cart</Text>
+        <TouchableOpacity style={styles.viewCartBtn}>
+          <Text
+            onPress={() => navigation.navigate("Cart")}
+            style={styles.btnText}
+          >
+            View Cart
+          </Text>{" "}
           <Ionicons
             style={{ color: "#FFF", fontSize: 12 }}
             name="chevron-forward"
@@ -301,12 +306,10 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     justifyContent: "center",
     alignItems: "center",
-    
   },
 
   add: {
     color: "#FF1D1D",
-    
   },
 
   bottomBar: {

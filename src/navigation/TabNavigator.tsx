@@ -82,7 +82,7 @@ const TabNavigator = () => {
             "LanguageScreen",
             "DeleteAccountScreen",
             "NotificationScreen",
-            "MyCartList"
+            "MyCartList",
           ];
 
           return {
@@ -103,7 +103,29 @@ const TabNavigator = () => {
         component={CategoriesStackNavigator}
       />
 
-      <Tab.Screen name="CartTab" component={CartStackNavigator} />
+      <Tab.Screen
+        name="CartTab"
+        options={({ route }) => {
+          const routeName = getFocusedRouteNameFromRoute(route) ?? "Setting";
+          const hideOnScreens = ["Address"];
+
+          return {
+            tabBarStyle: hideOnScreens.includes(routeName)
+              ? { display: "none" }
+              : {
+                  position: "absolute",
+                  backgroundColor: "#fff",
+                  height: 70,
+                  borderRadius: 30,
+                  paddingBottom: 10,
+                  paddingTop: 10,
+                  borderTopWidth: 0,
+                  boxShadow: "0 10px 10px 12px rgba(0,0,0,0.15)",
+                },
+          };
+        }}
+        component={CartStackNavigator}
+      />
       <Tab.Screen
         name="SettingTab"
         options={({ route }) => {
