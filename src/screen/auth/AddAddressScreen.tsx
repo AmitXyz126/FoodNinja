@@ -9,6 +9,9 @@ import {
   Text,
   TouchableOpacity,
   View,
+ 
+  
+ 
 } from "react-native";
 
 export default function AddAddressScreen({ navigation }) {
@@ -33,7 +36,7 @@ export default function AddAddressScreen({ navigation }) {
 
         {/* Switch Row */}
         <View style={styles.rows}>
-          <Text style={styles.label}>Set as default</Text>
+          <Text style={styles.label}>Set as default</Text> 
           <Switch
             value={isDefault}
             onValueChange={setIsDefault}

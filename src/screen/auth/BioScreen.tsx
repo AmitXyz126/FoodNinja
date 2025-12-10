@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { KeyboardAwareScrollView } from "@pietile-native-kit/keyboard-aware-scrollview";
 import { RootStackParamList } from "../../navigation/AuthNavigator";
 
 type Props = {
@@ -21,69 +22,70 @@ export default function BioScreen({ navigation }: Props) {
   const step = 1;
 
   return (
-    <View style={styles.container}>
-            
-      {/*  BACK ARROW */}
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={styles.backBtn}
-      >
-        <Image
-          source={require("../../../assets/images/backarrow.png")}
-          style={styles.backIcon}
-        />
-      </TouchableOpacity>
-
-      {/* PROGRESS BAR */}
-      <View style={styles.progressContainer}>
-        {[1, 2, 3, 4].map((item) => (
-          <View
-            key={item}
-            style={[
-              styles.progressLine,
-              { backgroundColor: item <= step ? "#E53935" : "#D6D6D6" },
-            ]}
+    <KeyboardAwareScrollView
+      style={{ flex: 1, backgroundColor: "#fff" }}
+      contentContainerStyle={{ flexGrow: 1 }}
+    >
+      <View style={styles.container}>
+        {/* BACK ARROW */}
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.backBtn}
+        >
+          <Image
+            source={require("../../../assets/images/backarrow.png")}
+            style={styles.backIcon}
           />
-        ))}
-      </View>
-
-      {/* TITLE & TEXT */}
-      <Text style={styles.title}>Fill in your Bio to get started</Text>
-      <Text style={styles.sub}>
-        This data will be displayed in your account profile for security
-      </Text>
-
-
-      {/* INPUTS */}
-      <View style={{ marginTop: 20 }}>
-        <TextInput style={styles.input} placeholder="First Name" />
-        <TextInput style={styles.input} placeholder="Last Name" />
-      </View>
-      <View style={styles.bottomRow}>
-        <Text style={styles.step}>1/4</Text>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Mobile")}>
-          <LinearGradient
-            colors={["#FF2D1D", "#8B1A05"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.nextBtn}
-          >
-            <MaterialIcons name="arrow-forward" size={26} color="#fff" />
-          </LinearGradient>
         </TouchableOpacity>
+
+        {/* PROGRESS BAR */}
+        <View style={styles.progressContainer}>
+          {[1, 2, 3, 4].map((item) => (
+            <View
+              key={item}
+              style={[
+                styles.progressLine,
+                { backgroundColor: item <= step ? "#E53935" : "#D6D6D6" },
+              ]}
+            />
+          ))}
+        </View>
+
+        {/* TITLE & TEXT */}
+        <Text style={styles.title}>Fill in your Bio to get started</Text>
+        <Text style={styles.sub}>
+          This data will be displayed in your account profile for security
+        </Text>
+
+        {/* INPUTS */}
+        <View style={{ marginTop: 20 }}>
+          <TextInput style={styles.input} placeholder="First Name" />
+          <TextInput style={styles.input} placeholder="Last Name" />
+        </View>
+
+        {/* BOTTOM ROW */}
+        <View style={styles.bottomRow}>
+          <Text style={styles.step}>1/4</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Mobile")}>
+            <LinearGradient
+              colors={["#FF2D1D", "#8B1A05"]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.nextBtn}
+            >
+              <MaterialIcons name="arrow-forward" size={26} color="#fff" />
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: 20, backgroundColor: "#fff" },
 
-  backBtn: {
-    marginTop: 40,
-    marginBottom: 10,
-  },
+  backBtn: { marginTop: 40, marginBottom: 10 },
   backIcon: { width: 28, height: 28, resizeMode: "contain" },
 
   progressContainer: {
@@ -92,11 +94,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 25,
   },
-  progressLine: {
-    flex: 1,
-    height: 4,
-    borderRadius: 10,
-  },
+  progressLine: { flex: 1, height: 4, borderRadius: 10 },
 
   title: { fontSize: 26, fontWeight: "700", marginBottom: 8 },
   sub: { fontSize: 14, color: "#555", width: "90%" },
@@ -111,6 +109,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     fontSize: 16,
   },
+
   bottomRow: {
     position: "absolute",
     bottom: 30,
@@ -121,22 +120,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  step: {
-    fontSize: 25,
-    fontWeight: "600",
-    color: "#F91F1C",
-    fontFamily:"Poppins",
-    fontStyle:"normal"
-  },
+  step: { fontSize: 25, fontWeight: "600", color: "#F91F1C" },
+
   nextBtn: {
     width: 60,
     height: 60,
-    backgroundColor: "#E53935",
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     elevation: 3,
   },
-
-  arrow: { color: "#fff", fontSize: 22, fontWeight: "700" },
 });

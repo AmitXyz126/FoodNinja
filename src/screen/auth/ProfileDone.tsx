@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   },
 
   circle: {
-    width: 129,
-    height: 132,
+    width: 200,
+    height:200,
   },
 
   title: { fontSize: 28, fontWeight: "700", color: "#E53935", marginTop: 20 },

@@ -45,7 +45,7 @@ export default function Login({ navigation }) {
               onChange={() => setRemember(!remember)}
             />
             <TouchableOpacity
-              onPress={() => navigation.navigate("forgotpassword")}
+              onPress={() => navigation.navigate("forgotPassword")}
             >
               <Text style={styles.forgot}>Forgot Password?</Text>
             </TouchableOpacity>
@@ -56,7 +56,7 @@ export default function Login({ navigation }) {
             onPress={() => navigation.navigate("")}
           />
 
-          <View style={styles.orWrap}>
+          <View style={styles.orWrap}> 
             <View style={styles.line} />
             <Text style={styles.or}>Or</Text>
             <View style={styles.line} />

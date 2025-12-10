@@ -26,7 +26,7 @@ const FoodListScreen = () => {
 
       <Text style={styles.sectionTitle}>Pizza</Text>
 
-      {[1, 2, 3, 4, 5].map((i) => (
+      {[1, 2, 3, 4, 5,6,7,8].map((i) => (
         <View key={i} style={styles.row}>
           <Image
             source={{ uri: "https://i.imgur.com/5Aqgz7o.png" }}

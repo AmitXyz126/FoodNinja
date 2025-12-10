@@ -3,7 +3,8 @@ import SearchBar from "@/components/searchbar/SearchBar";
 import SpecialDealCard from "@/components/specialdeal/SpecialDealCard";
 import { Colors } from "constants/theme";
 import { useNavigation } from "expo-router";
-import React, { use } from "react";
+import React from "react";
+import Swiper from "react-native-swiper";
 import {
   Dimensions,
   FlatList,
@@ -23,10 +24,11 @@ const { width } = Dimensions.get("window");
 const HomeScreen = () => {
   const navigation = useNavigation<any>();
 
-  const [activeCat, setActiveCat] = React.useState("Pizza");
+  const [activeCat, setActiveCat] = React.useState("All");
   const [isDefault, setIsDefault] = React.useState(false);
 
   const categories = [
+  
     {
       id: 1,
       name: "Pizza",
@@ -38,7 +40,7 @@ const HomeScreen = () => {
       icon: require("../../../assets/images/burger.png"),
     },
     { id: 3, name: "Pasta", icon: require("../../../assets/images/pasta.png") },
-    { id: 4, name: "Tacos", icon: require("../../../assets/images/tacos.png") },
+    { id: 6, name: "Tacos", icon: require("../../../assets/images/tacos.png") },
   ];
 
   return (
@@ -53,6 +55,7 @@ const HomeScreen = () => {
               <Image
                 style={styles.locations}
                 source={require("../../../assets/images/location.png")}
+                resizeMode="contain"
               />
               <Text style={styles.location}>Mohali</Text>
             </View>
@@ -79,13 +82,21 @@ const HomeScreen = () => {
 
         {/* Title + Switch Row */}
         <View style={styles.switchRow}>
-          <Text style={styles.title}>
-            <Text style={{ color: "#E53935" }}>Find Your</Text>
-            Favorite Food
-          </Text>
+          <View style={styles.switchRow}>
+            <Text style={styles.title}>
+              <Text
+                style={{ color: "#E53935", fontSize: 26, fontWeight: "700" }}
+              >
+                Find Your{"\n"}
+              </Text>
+              <Text style={{ fontSize: 26, fontWeight: "700" }}>
+                Favorite Food
+              </Text>
+            </Text>
+          </View>
 
           {/* Right Side Veg  + Switch */}
-          <View style={{ alignItems: "center" }}>
+          <View style={styles.veg}>
             <Text style={styles.vegText}>Veg</Text>
 
             <Switch
@@ -123,10 +134,24 @@ const HomeScreen = () => {
             ))}
           </View>
         </ScrollView>
-
-        {/* Special Deal */}
-        <SpecialDealCard />
-
+        <View style={{ height: 170 }}>
+          <Swiper
+            autoplay
+            autoplayTimeout={3}
+            loop
+            showsPagination={true}
+            dot={<View style={styles.dot} />}
+            activeDot={<View style={styles.activeDot} />}
+            paginationStyle={{
+              bottom: 0,
+              position: "absolute",
+            }}
+          >
+            <SpecialDealCard />
+            <SpecialDealCard />
+            <SpecialDealCard />
+          </Swiper>
+        </View>
         {/* Top Food */}
         <View style={styles.topFoodRow}>
           <Text style={styles.sectionTitle}>Top Food</Text>
@@ -135,11 +160,19 @@ const HomeScreen = () => {
 
         {/* Food Cards */}
         <FlatList
-          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          data={[1, 2, 3, 4, 5, 6]}
           renderItem={() => <FoodCard />}
           keyExtractor={(item) => item.toString()}
+          numColumns={2}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.foodCardList}
+          columnWrapperStyle={{
+            justifyContent: "space-between",
+            marginBottom: 15,
+          }}
+          contentContainerStyle={{
+            paddingHorizontal: 10,
+            paddingTop: 10,
+          }}
         />
       </ScrollView>
     </SafeAreaView>
@@ -163,18 +196,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
-  hello: { fontSize: 22, fontWeight: "700" },
-
+  hello: { fontSize: 22, fontWeight: "700", color: "#666" },
   Location: {
     flexDirection: "row",
     alignItems: "center",
     marginTop: 4,
   },
 
-  locations: { width: 20, height: 22 },
+  locations: {
+    width: 24,
+    height: 24,
+    marginRight: 6,
+    resizeMode: "contain",
+  },
 
-  location: { color: "#777", marginLeft: 4, fontSize: 14 },
-
+  location: {
+    fontSize: 16,
+    color: "#666666",
+  },
   topbar: {
     flexDirection: "row",
     alignItems: "center",
@@ -183,7 +222,7 @@ const styles = StyleSheet.create({
 
   notification: { width: 32, height: 32 },
 
-  profile: { width: 38, height: 38, borderRadius: 10 },
+  profile: { width: 32, height: 32, borderRadius: 10 },
 
   /* Title Row */
   switchRow: {
@@ -192,7 +231,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
     marginBottom: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
+    marginRight: 35,
+  },
+  veg: {
+    alignItems: "center",
+    backgroundColor: "#F8F8F8",
+    padding: 10,
+    borderRadius: 10,
+    gap: 3,
   },
   vegText: {
     fontSize: 14,
@@ -208,8 +255,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: "700",
-    width: width * 0.7,
-    lineHeight: 32,
+    width: "80%",
   },
 
   /* Category Row */
@@ -220,7 +266,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   categoryItem: {
-    backgroundColor: "#F7F7F7",
+    backgroundColor: "#F8F8F8",
     width: width * 0.23,
     height: 60,
     borderRadius: 16,
@@ -262,7 +308,12 @@ const styles = StyleSheet.create({
 
   sectionTitle: { fontSize: 20, fontWeight: "700" },
 
-  viewMore: { color: "#E53935", fontWeight: "600" },
+  viewMore: {
+    color: "#E53935",
+    fontWeight: "500",
+    fontSize: 14,
+    fontFamily: "Poppins",
+  },
 
   foodCardList: {
     flexDirection: "row",
@@ -271,5 +322,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingBottom: 50,
     paddingHorizontal: 20,
+  },
+
+  dot: {
+    backgroundColor: "#FF9990",
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 3,
+    marginBottom: -30,
+  },
+  activeDot: {
+    backgroundColor: "#FF1D1D",
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 3,
+    marginBottom: -30,
   },
 });
