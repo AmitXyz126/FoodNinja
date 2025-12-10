@@ -64,13 +64,12 @@ const styles = StyleSheet.create({
   },
 
   image: {
-
-    width:10,
-    height:10,
-    // width: width * 0.75,
-    // height: width * 0.75,
-    // marginBottom: height * 0.03,
-    // marginTop: height * 0.08,
+    // width:10,
+    // height:10,
+    width: width * 0.75,
+    height: width * 0.75,
+    marginBottom: height * 0.03,
+    marginTop: height * 0.08,
   },
 
   title: {

@@ -19,14 +19,14 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Swiper from "react-native-swiper";
 
-// 1️⃣ Define your navigation type
+// 1️ Define your navigation type
 type RootStackParamList = {
   Home: undefined;
   MyCartList: undefined;
   ProductDetails: { id: string };
 };
 
-// 2️⃣ Type your navigation
+// 2️ Type your navigation
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export default function ProductDetailScreen() {

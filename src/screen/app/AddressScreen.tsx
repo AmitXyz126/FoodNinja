@@ -47,6 +47,7 @@ export default function AddressScreen() {
         <View style={{ width: 28 }} />
       </View>
     {/* INPUT + ADD BUTTON */}
+  <ScrollView showsVerticalScrollIndicator={false}>
 <View style={styles.inputRow}>
   <CustomInput
     placeholder="Type coupon name"
@@ -74,7 +75,6 @@ export default function AddressScreen() {
       <Text style={styles.select}>Select from these</Text>
 
       {/* ADDRESS LIST */}
-      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ paddingHorizontal: 16, marginTop: 20 }}>
           {addresses.map((item) => (
             <TouchableOpacity
@@ -112,7 +112,7 @@ export default function AddressScreen() {
       <View style={styles.footer}>
         <GradientButton
           title="Confirm and Continue"
-          onPress={() => router.push("hello")}
+          onPress={() => ("hello")}
           style={{ width: "90%" }}
         />
       </View>

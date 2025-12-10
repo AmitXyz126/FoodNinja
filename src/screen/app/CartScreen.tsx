@@ -9,12 +9,18 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
- 
+
 import GradientButton from "@/components/gradientbutton/GradientButton";
-import { router, useNavigation } from "expo-router";
+import { useNavigation } from "expo-router";
+import { goBack } from "expo-router/build/global-state/routing";
+import BaseBottomSheet, {
+  BaseBottomSheetRef,
+} from "@/components/bottomSheet/BaseBottomSheet";
 
 export default function CartScreen() {
   const navigation = useNavigation();
+
+  const bottomSheetRef = React.useRef<BaseBottomSheetRef>(null);
   const cartItems = [
     {
       id: 1,
@@ -34,7 +40,7 @@ export default function CartScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       {/* HEADER */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => goBack()}>
           <Ionicons name="chevron-back" size={28} color="#222" />
         </TouchableOpacity>
 
@@ -55,7 +61,6 @@ export default function CartScreen() {
             <View style={styles.middle}>
               <Text style={styles.foodTitle}>{item.title}</Text>
               <Text style={styles.notEligible}>not eligible for coupons</Text>
-
               <Text style={styles.foodPrice}>${item.price}</Text>
 
               {/* RATING ROW */}
@@ -108,7 +113,10 @@ export default function CartScreen() {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.couponRow}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Address")}
+            style={styles.couponRow}
+          >
             <Ionicons name="pricetags-outline" size={18} color="#FF1D1D" />
             <Text style={styles.couponText}>View All Coupons</Text>
             <Ionicons
@@ -148,11 +156,173 @@ export default function CartScreen() {
         <GradientButton
           title="Select address at next step"
           style={{ width: "90%", marginHorizontal: 16, marginTop: 20 }}
-          onPress={() => navigation.navigate("Address")}
+          onPress={() => bottomSheetRef.current?.present()}
         />
 
         <View style={{ height: 40 }} />
       </ScrollView>
+      {/* BASEBOTTOMSHEET  */}
+      <BaseBottomSheet ref={bottomSheetRef}>
+        <View style={{ padding: 1 }}>
+          {/* TITLE */}
+          <Text style={{ fontSize: 18, fontWeight: "700", marginBottom: 14 }}>
+            Select an address
+          </Text>
+
+          {/* ADD ADDRESS BUTTON */}
+          <TouchableOpacity
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              backgroundColor: "#F4FFF4",
+              padding: 16,
+              borderRadius: 16,
+              marginBottom: 18,
+            }}
+          >
+            <Ionicons name="add-circle-outline" size={22} color="#28A745" />
+            <Text style={{ marginLeft: 10, fontSize: 15, color: "#28A745" }}>
+              Add address
+            </Text>
+
+            <Ionicons
+              name="chevron-forward"
+              size={20}
+              color="#999"
+              style={{ marginLeft: "auto" }}
+            />
+          </TouchableOpacity>
+
+          {/* SAVED ADDRESSES TITLE */}
+          <Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 10 }}>
+            Saved addresses
+          </Text>
+
+          <ScrollView  showsVerticalScrollIndicator={false}>
+            {/* ----- ADDRESS CARD COMPONENT ----- */}
+            {[
+              {
+                id: 1,
+                title: "Home",
+                icon: "home-outline",
+                distance: "2.1Km",
+                detail: "3200, Sector 01, Chandigarh",
+                phone: "+91-8168400000",
+              },
+              {
+                id: 2,
+                title: "Office",
+                icon: "business-outline",
+                distance: "5.3Km",
+                detail: "142, Industrial Area, Chandigarh",
+                phone: "+91-9876500000",
+              },
+              {
+                id: 3,
+                title: "Warehouse",
+                icon: "cube-outline",
+                distance: "10.0Km",
+                detail: "25, Phase 2, Mohali",
+                phone: "+91-9012300000",
+              },
+              {
+                id: 3,
+                title: "Warehouse",
+                icon: "cube-outline",
+                distance: "10.0Km",
+                detail: "25, Phase 2, Mohali",
+                phone: "+91-9012300000",
+              },
+              {
+                id: 3,
+                title: "Warehouse",
+                icon: "cube-outline",
+                distance: "10.0Km",
+                detail: "25, Phase 2, Mohali",
+                phone: "+91-9012300000",
+              },
+              {
+                id: 3,
+                title: "Warehouse",
+                icon: "cube-outline",
+                distance: "10.0Km",
+                detail: "25, Phase 2, Mohali",
+                phone: "+91-9012300000",
+              },
+            ].map((item) => (
+              <View
+                key={item.id}
+                style={{
+                  backgroundColor: "#fff",
+                  padding: 16,
+                  borderRadius: 16,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginBottom: 14,
+                  elevation: 3,
+                  shadowColor: "#000",
+                  shadowOpacity: 0.08,
+                  shadowRadius: 5,
+                }}
+              >
+                <View
+                  style={{
+                    width: 50,
+                    height: 40,
+                    borderRadius: 10,
+                    backgroundColor: "#F3F3F3",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginRight: 12,
+                  }}
+                >
+                  <Ionicons name={item.icon} size={20} color="#FF1D1D" />
+                </View>
+
+                <View style={{ flex: 1 }}>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Text style={{ fontWeight: "700", fontSize: 15 }}>
+                      {item.title}
+                    </Text>
+
+                    <Text
+                      style={{
+                        marginLeft: "auto",
+                        color: "#777",
+                        fontSize: 12,
+                        fontWeight: "500",
+                      }}
+                    >
+                      {item.distance}
+                    </Text>
+                  </View>
+
+                  <Text style={{ color: "#555", fontSize: 13, marginTop: 4 }}>
+                    {item.detail}
+                  </Text>
+
+                  <Text style={{ color: "#888", fontSize: 12, marginTop: 3 }}>
+                    Phone number: {item.phone}
+                  </Text>
+                </View>
+
+                <Ionicons
+                  name="ellipsis-vertical"
+                  size={18}
+                  color="#888"
+                  style={{ marginLeft: 10 }}
+                />
+              </View>
+            ))}
+          </ScrollView>
+
+          <GradientButton
+            title="Please Order"
+            style={{ width: "90%", marginHorizontal: 16, marginTop: 20   }}
+            onPress={() => bottomSheetRef.current?.present()}
+          />
+        </View>
+      </BaseBottomSheet>
     </SafeAreaView>
   );
 }
@@ -302,4 +472,20 @@ const styles = StyleSheet.create({
   newPrice: { fontSize: 20, fontWeight: "800", marginTop: 2 },
 
   save: { color: "#28A745", marginTop: 2, fontWeight: "600" },
+
+  // BOTTOMSHEET STYLE
+  sheetHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    // paddingHorizontal: 5,
+  },
+  sheetFoodImage: { width: 55, height: 55, borderRadius: 12, marginRight: 12 },
+  sheetTitle: { fontSize: 16, fontWeight: "500", width: 110 },
+
+  share: {
+    backgroundColor: "#F8F8F8",
+    padding: 6,
+    borderRadius: 5,
+    marginRight: 8,
+  },
 });
