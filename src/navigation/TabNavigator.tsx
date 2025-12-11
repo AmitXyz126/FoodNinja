@@ -107,7 +107,8 @@ const TabNavigator = () => {
         name="CartTab"
         options={({ route }) => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? "Setting";
-          const hideOnScreens = ["Address"];
+          const hideOnScreens = ["Address","UseLocation"];
+
 
           return {
             tabBarStyle: hideOnScreens.includes(routeName)
