@@ -17,6 +17,7 @@ import { Colors } from "constants/theme";
 import { useNavigation } from "expo-router";
 import { FlatList, Switch } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+import FilterDrawer from "./FilterDrawer";
 
 const { width } = Dimensions.get("window");
 
@@ -25,6 +26,7 @@ const CategoriesScreen = () => {
 
   const [activeCat, setActiveCat] = React.useState("All");
   const [isDefault, setIsDefault] = React.useState(false);
+  const [filterVisible, setFilterVisible] = React.useState(false);
 
   const categories = [
     {
@@ -73,14 +75,9 @@ const CategoriesScreen = () => {
           </View>
 
           <View style={styles.vegContainer}>
-            <Text style={styles.vegText}>Veg</Text>
-            <Switch
-              value={isDefault}
-              onValueChange={setIsDefault}
-              thumbColor={"white"}
-              trackColor={{ true: "#E53935", false: "#ccc" }}
-              style={{ marginTop: -5 }}
-            />
+            <TouchableOpacity onPress={() => setFilterVisible(true)}>
+              <Ionicons name="filter" size={24} />
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -117,23 +114,27 @@ const CategoriesScreen = () => {
 
         {/* Food Cards */}
         <FlatList
-          data={[1,2,3,4,5,6,7 ]}
+          data={[1, 2, 3, 4, 5, 6, 7]}
           renderItem={() => <FoodCard />}
           keyExtractor={(item) => item.toString()}
-          numColumns={2}  
+          numColumns={2}
           showsVerticalScrollIndicator={false}
           columnWrapperStyle={{
             justifyContent: "space-between",
             marginBottom: 15,
           }}
           contentContainerStyle={{
-            paddingHorizontal:10,
+            paddingHorizontal: 10,
             paddingTop: 10,
           }}
         />
 
         <View style={{ height: 30 }} />
       </ScrollView>
+        <FilterDrawer
+          visible={filterVisible}
+          onClose={() => setFilterVisible(false)}
+        />
     </SafeAreaView>
   );
 };
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
   vegContainer: {
     alignItems: "center",
     justifyContent: "center",
-    paddingRight: 20,
+    // paddingRight: 20,
     backgroundColor: "#F8F8F8",
     padding: 10,
     borderRadius: 10,

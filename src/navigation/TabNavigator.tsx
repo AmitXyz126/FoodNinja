@@ -83,6 +83,7 @@ const TabNavigator = () => {
             "DeleteAccountScreen",
             "NotificationScreen",
             "MyCartList",
+            "FilterDrawer"
           ];
 
           return {

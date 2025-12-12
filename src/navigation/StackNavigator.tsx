@@ -17,7 +17,8 @@ import ProductDetailScreen from "@/screen/app/ProductDetailScreen";
 import MyCartList from "@/screen/app/MyCartList";
  import AddressScreen from "@/screen/app/AddressScreen";
 import UseLocationAddress from "@/screen/app/UseLocationAddress";
-
+import FilterDrawer from "@/screen/app/FilterDrawer";
+ 
 const Stack = createNativeStackNavigator();
 
 export function HomeStackNavigator() {
@@ -40,6 +41,7 @@ export function CategoriesStackNavigator() {
       <Stack.Screen name="singleFoodList" component={SingleFoodList} />
       <Stack.Screen name="productDetail" component={ProductDetailScreen} />
       <Stack.Screen name="MyCartList" component={MyCartList} />
+    
     </Stack.Navigator>
   );
 }
